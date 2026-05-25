@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>John Doe | Junior Application Developer</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Your external CSS file -->
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+
+      <!-- Logo — change "JD" to your initials -->
+      <a href="#hero" class="nav-logo">JD.</a>
+
+      <!-- Desktop nav links -->
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <!-- Dark/Light toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+          <span id="themeLabel">Dark</span>
+        </button>
+
+        <!-- Hamburger — mobile only -->
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about"          onclick="closeMobile()">About</a>
+      <a href="#education"      onclick="closeMobile()">Education</a>
+      <a href="#experience"     onclick="closeMobile()">Experience</a>
+      <a href="#skills"         onclick="closeMobile()">Skills</a>
+      <a href="#achievements"   onclick="closeMobile()">Achievements</a>
+      <a href="#projects"       onclick="closeMobile()">Projects</a>
+      <a href="#certifications" onclick="closeMobile()">Certifications</a>
+      <a href="#contact"        onclick="closeMobile()">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO SECTION
+       To update: edit name, bio, email, github, linkedin links
+       ============================================================ -->
+  <section id="hero">
+    <div class="hero-content">
+
+      <div class="hero-badge">
+        <span></span>
+        Open to opportunities
+      </div>
+
+      <!-- UPDATE: Your name here -->
+      <h1 class="hero-name">
+        Hi, I'm <span class="gradient-text">John Doe</span>
+      </h1>
+
+      <!-- Typing animation roles are in main.js → roles[] array -->
+      <p class="hero-role">
+        <span id="typedText" class="typed-text"></span>
+      </p>
+
+      <!-- UPDATE: Your short bio here -->
+      <p class="hero-bio">
+        Frontend-focused Application Developer with hands-on experience building scalable
+        web and mobile applications for government-level projects. Passionate about clean
+        code, great UX, and continuous learning.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fas fa-folder-open"></i> View Projects
+        </a>
+        <!-- UPDATE: Make sure resume.pdf is in your root folder -->
+        <a href="resume.pdf" download class="btn btn-outline">
+          <i class="fas fa-download"></i> Download CV
+        </a>
+      </div>
+
+      <!-- UPDATE: Replace # with your actual links -->
+      <div class="hero-social">
+        <a href="mailto:johndoe@email.com" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://github.com/johndoe" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/johndoe" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+
+      <div class="scroll-hint">
+        <i class="fas fa-chevron-down"></i>
+        <span>Scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT SECTION
+       To update: edit bio paragraphs and info pills below
+       ============================================================ -->
+  <section id="about">
+    <div class="section">
+      <div class="title-line"></div>
+      <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+      <p class="section-subtitle">A little bit about who I am</p>
+
+      <div class="about-grid reveal">
+
+        <!-- UPDATE: Replace icon with your photo
+             Example: <img src="assets/images/photo.jpg" alt="John Doe" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
+        -->
+        <div class="about-photo">
+          <i class="fas fa-user"></i>
+        </div>
+
+        <div class="about-text">
+          <h3>Frontend-Focused Application Developer</h3>
+
+          <!-- UPDATE: Edit these paragraphs anytime -->
+          <p>
+            I'm a fresh Computer Science graduate with hands-on professional experience
+            building scalable web and mobile applications for government-level digital
+            transformation projects in Malaysia.
+          </p>
+          <p>
+            Proficient in Vue.js and Flutter, with strong foundations in REST API integration,
+            responsive UI/UX design, and agile development practices. Contributed to successful
+            UAT acceptance on Kampung Digital Melaka 2.0 and the SPAN Mobile Application.
+          </p>
+          <p>
+            Seeking to grow as a Frontend Developer while expanding expertise into fullstack
+            and mobile development.
+          </p>
+
+          <!-- UPDATE: Your location and email -->
+          <div class="about-info">
+            <div class="info-pill"><i class="fas fa-map-marker-alt"></i> Selangor, Malaysia</div>
+            <div class="info-pill"><i class="fas fa-envelope"></i> johndoe@email.com</div>
+            <div class="info-pill"><i class="fas fa-briefcase"></i> Open to Work</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EDUCATION SECTION
+       To update: edit degree, university, GPA, date, badges
+       ============================================================ -->
+  <section id="education" class="bg-tint">
+    <div class="section">
+      <div class="title-line"></div>
+      <h2 class="section-title"><span class="gradient-text">Education</span></h2>
+      <p class="section-subtitle">My academic background</p>
+
+      <div class="card reveal">
+        <div class="edu-card">
+          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="edu-info">
+            <!-- UPDATE: Your degree details -->
+            <h3>Bachelor of Science Computer (Honours) in Netcentric Computing</h3>
+            <p class="school">Universiti Teknologi Mara (UiTM) — Shah Alam, Malaysia</p>
+            <p class="meta">October 2022 – February 2026</p>
+            <div class="edu-badges">
+              <span class="badge">GPA: 3.67 / 4.0</span>
+              <span class="badge">🏅 Dean's List</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EXPERIENCE SECTION
+       To update: add/remove timeline-item blocks below
+       Each block = one job. Most recent job goes first (top).
+       ============================================================ -->
+  <section id="experience">
+    <div class="section">
+      <div class="title-line"></div>
+      <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
+      <p class="section-subtitle">My professional journey so far</p>
+
+      <div class="timeline reveal">
+
+        <!-- JOB 1: Most recent first -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <!-- UPDATE: Date, title, company -->
+          <p class="timeline-date">January 2026 – Present</p>
+          <h3 class="timeline-title">Junior Executive Application Developer</h3>
+          <p class="timeline-company">Tech Company Sdn. Bhd. · Full-time</p>
+          <ul class="timeline-list">
+            <!-- UPDATE: Edit bullet points here -->
+            <li>Gathered and documented functional requirements to translate public sector operational needs into scalable technical workflows.</li>
+            <li>Supported the full SDLC — system requirement analysis, technical documentation, and cross-functional project scoping.</li>
+            <li>Conducted continuous system testing, end-to-end debugging, and integration verification to ensure flawless UAT delivery.</li>
+            <li>Collaborated in agile teams using Git on GitHub, contributing to code reviews and version control best practices.</li>
+            <li>Developed and maintained frontend and backend features for government web and mobile applications.</li>
+            <li>Participated in testing, debugging, and system integration for smooth deployment and minimal production issues.</li>
+          </ul>
+        </div>
+
+        <!-- JOB 2: Internship -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-date">September 2025 – December 2025</p>
+          <h3 class="timeline-title">Application Developer (Intern)</h3>
+          <p class="timeline-company">Tech Company Sdn. Bhd. · Internship</p>
+          <ul class="timeline-list">
+            <li>Assisted in frontend and backend development of government web applications.</li>
+            <li>Supported development using Laravel and JavaScript.</li>
+            <li>Contributed to UI implementation and database-related functionalities.</li>
+            <li>Worked closely with senior developers in system testing and enhancement tasks.</li>
+          </ul>
+        </div>
+
+        <!-- TO ADD A NEW JOB: Copy the block above and paste here -->
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SKILLS SECTION
+       To update: add/remove <span class="skill-tag"> inside any category
+       To add a new category: copy a full .card.skill-category block
+       ============================================================ -->
+  <section id="skills" class="bg-tint">
+    <div class="section">
+      <div class="title-line"></div>
+      <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
+      <p class="section-subtitle">Technologies and tools I work with</p>
+
+      <div class="skills-grid reveal">
+
+        <div class="card skill-category">
+          <h4><i class="fas fa-laptop-code"></i> Frontend</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Vue.js</span>
+            <span class="skill-tag">Vuetify</span>
+            <span class="skill-tag">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <div class="card skill-category">
+          <h4><i class="fas fa-mobile-alt"></i> Mobile</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Flutter</span>
+            <span class="skill-tag">Dart</span>
+            <span class="skill-tag">Material Design</span>
+          </div>
+        </div>
+
+        <div class="card skill-category">
+          <h4><i class="fas fa-server"></i> Backend & Database</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Laravel</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">RESTful API</span>
+          </div>
+        </div>
+
+        <div class="card skill-category">
+          <h4><i class="fas fa-tools"></i> Tools & DevOps</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Agile / Scrum</span>
+            <span class="skill-tag">AWS (Foundational)</span>
+          </div>
+        </div>
+
+        <div class="card skill-category">
+          <h4><i class="fas fa-file-alt"></i> Documentation & Analysis</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Requirement Gathering</span>
+            <span class="skill-tag">SRS</span>
+            <span class="skill-tag">Use Cases / DFDs</span>
+            <span class="skill-tag">SDLC</span>
+            <span class="skill-tag">UAT Support</span>
+          </div>
+        </div>
+
+        <div class="card skill-category">
+          <h4><i class="fas fa-chart-bar"></i> Productivity</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Microsoft Word</span>
+            <span class="skill-tag">Microsoft PowerPoint</span>
+            <span class="skill-tag">Microsoft Excel</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ACHIEVEMENTS SECTION
+       To update: edit text inside each .achieve-card
+       To add new: copy one full .card.achieve-card block and paste
+       ============================================================ -->
+  <section id="achievements">
+    <div class="section">
+      <div class="title-line"></div>
+      <h2 class="section-title">Key <span class="gradient-text">Achievements</span></h2>
+      <p class="section-subtitle">Milestones I'm proud of</p>
+
+      <div class="achieve-grid reveal">
+
+        <div class="card achieve-card">
+          <div class="achieve-icon">🏛️</div>
+          <h4>Kampung Digital Melaka 2.0</h4>
+          <p>Contributed to a state-wide government digitalization system targeting residents across Melaka — progressing from development to FAT stage within 9 months, on track for live deployment by July 2026.</p>
+        </div>
+
+        <div class="card achieve-card">
+          <div class="achieve-icon">💧</div>
+          <h4>SPAN Mobile Application</h4>
+          <p>Actively developing a mobile app for Malaysia's national water supply regulatory body (SPAN), supporting 11 states and 2 Federal Territories with an estimated reach of over 27 million users.</p>
+        </div>
+
+        <div class="card achieve-card">
+          <div class="achieve-icon">🏅</div>
+          <h4>Dean's List Graduate</h4>
+          <p>Graduated with Dean's List recognition and GPA 3.67/4.0 in Bachelor of Science (Hons) Netcentric Computing — demonstrating consistent academic performance throughout the programme.</p>
+        </div>
+
+        <div class="card achieve-card">
+          <div class="achieve-icon">📄</div>
+          <h4>End-to-End SRS Authoring</h4>
+          <p>Authored comprehensive System Requirement Specifications (SRS) for a state-wide government digitalisation platform, bridging business stakeholders and technical development teams.</p>
+        </div>
+
+        <div class="card achieve-card">
+          <div class="achieve-icon">🤖</div>
+          <h4>AI-Assisted Development Practice</h4>
+          <p>Utilised AI-assisted debugging tools to identify and resolve code errors prior to commit, and maintained pull request discipline with senior lead review before merging.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PROJECTS SECTION
+       To update: edit project title, description, tech tags
+       To add image: inside .project-img div, replace the icon with:
+         <img src="assets/images/yourimage.png" alt="Project Name">
+       To add new project: copy one full .card.project-card block
+       ============================================================ -->
+  <section id="projects" class="bg-tint">
+    <div class="section">
+      <div class="title-line"></div>
+      <h2 class="section-title">My <span class="gradient-text">Projects</span></h2>
+      <p class="section-subtitle">Things I've built professionally</p>
+
+      <div class="projects-grid reveal">
+
+        <!-- PROJECT 1 -->
+        <div class="card project-card">
+          <div class="project-img">
+            <!-- UPDATE: Replace icon with your screenshot image
+                 <img src="assets/images/kdm.png" alt="Kampung Digital Melaka 2.0"> -->
+            <i class="fas fa-city"></i>
+          </div>
+          <span class="project-status status-done">
+            <i class="fas fa-circle"></i> Completed (FAT Stage)
+          </span>
+          <h3>Kampung Digital Melaka 2.0</h3>
+          <p>A responsive property and premise management system for a government digitalization initiative. Features role-based access control, advanced data tables, a self-service complaint tracking module, and RESTful API integration via Axios.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Vue.js</span>
+            <span class="tech-tag">Vuetify</span>
+            <span class="tech-tag">Laravel</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">RBAC</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link"><i class="fas fa-lock"></i> Private Repo</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="card project-card">
+          <div class="project-img">
+            <!-- UPDATE: Replace icon with your screenshot image
+                 <img src="assets/images/span.png" alt="SPAN Mobile App"> -->
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <span class="project-status status-wip">
+            <i class="fas fa-circle"></i> In Progress
+          </span>
+          <h3>SPAN Mobile Application</h3>
+          <p>A cross-platform mobile application for Malaysia's water supply and sewerage data management system. Features responsive Material Design UI, real-time API sync, reusable widgets, and multi-screen navigation with dynamic filtering.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">Material Design</span>
+            <span class="tech-tag">Agile</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link"><i class="fas fa-lock"></i> Private Repo</a>
+          </div>
+        </div>
+
+        <!-- TO ADD NEW PROJECT: Copy one project block above and paste here -->
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CERTIFICATIONS SECTION
+       To update: edit cert name and issuer inside each .cert-card
+       To add new: copy one .card.cert-card block and paste
+       ============================================================ -->
+  <section id="certifications">
+    <div class="section">
+      <div class="title-line"></div>
+      <h2 class="section-title">My <span class="gradient-text">Certifications</span></h2>
+      <p class="section-subtitle">Continuous learning & professional development</p>
+
+      <div class="cert-grid reveal">
+
+        <div class="card cert-card">
+          <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+          <div class="cert-info">
+            <h4>Introduction to IoT</h4>
+            <span>Cisco Networking Academy</span>
+          </div>
+        </div>
+
+        <div class="card cert-card">
+          <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="cert-info">
+            <h4>Google Cybersecurity Professional Certificate</h4>
+            <span>Coursera · Google</span>
+          </div>
+        </div>
+
+        <div class="card cert-card">
+          <div class="cert-icon"><i class="fab fa-aws"></i></div>
+          <div class="cert-info">
+            <h4>AWS Bootcamp</h4>
+            <span>Iverson Workshop</span>
+          </div>
+        </div>
+
+        <div class="card cert-card">
+          <div class="cert-icon"><i class="fas fa-flag"></i></div>
+          <div class="cert-info">
+            <h4>Girl CTF</h4>
+            <span>Cybersecurity Competition · Participant</span>
+          </div>
+        </div>
+
+        <!-- TO ADD NEW CERT: Copy one .card.cert-card block above and paste here -->
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT SECTION
+       To update: edit email, github, linkedin links
+       Form setup: replace YOUR_FORM_ID with ID from formspree.io
+       ============================================================ -->
+  <section id="contact" class="bg-tint">
+    <div class="section">
+      <div class="title-line"></div>
+      <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+      <p class="section-subtitle">Let's connect and build something great</p>
+
+      <div class="contact-grid reveal">
+
+        <div class="contact-info">
+          <h3>Let's Talk! 👋</h3>
+          <p>Whether it's a job opportunity, collaboration, or just a friendly hello — my inbox is always open.</p>
+
+          <div class="contact-links">
+            <!-- UPDATE: Your actual contact details -->
+            <a href="mailto:johndoe@email.com" class="contact-link">
+              <i class="fas fa-envelope"></i> johndoe@email.com
+            </a>
+            <a href="https://github.com/johndoe" target="_blank" class="contact-link">
+              <i class="fab fa-github"></i> github.com/johndoe
+            </a>
+            <a href="https://linkedin.com/in/johndoe" target="_blank" class="contact-link">
+              <i class="fab fa-linkedin-in"></i> linkedin.com/in/johndoe
+            </a>
+            <div class="contact-link">
+              <i class="fas fa-map-marker-alt"></i> Selangor, Malaysia
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!--
+            CONTACT FORM SETUP:
+            1. Go to https://formspree.io → Sign up (free)
+            2. Create a new form → copy your Form ID
+            3. Replace YOUR_FORM_ID below
+            Example: action="https://formspree.io/f/abcd1234"
+          -->
+          <form id="contactForm" class="contact-form"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="e.g. Ahmad Razif" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="e.g. ahmad@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="What would you like to say?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+
+          <!-- Shows after form is submitted successfully -->
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i>
+            <p><strong>Message sent!</strong> I'll get back to you soon.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       To update: change your name
+       ============================================================ -->
+  <footer>
+    <!-- UPDATE: Your name -->
+    <p>Designed & Built by <strong>John Doe</strong> · <span id="year"></span></p>
+    <p>Made with 💜 in Malaysia</p>
+  </footer>
+
+
+  <!-- Link to your external JS file -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
