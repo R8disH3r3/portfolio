@@ -51,8 +51,8 @@ function closeMobile() {
 // ================================================================
 const roles = [
   'Junior Application Developer',
-  'Frontend Developer',
-  'Vue.js & Flutter Dev',
+  'Web Development',
+  'Mobile Development',
   'Fresh CS Graduate 🎓',
 ];
 

@@ -1,161 +1,779 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>John Doe | Junior Application Developer</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Humairah | Application Developer Portfolio</title>
+
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/style.css">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+    })();
+  </script>
 
-  <!-- Your external CSS file -->
-  <link rel="stylesheet" href="assets/css/style.css"/>
+  <style>
+    /* ─── Download CV Button ─── */
+    .cv-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orange-yellow-crayola, #e3a84d);
+      color: #1e1e1e;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 14px;
+      transition: opacity 0.2s;
+    }
+
+    .cv-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* ─── GitHub Stats ─── */
+    .github-stats-section {
+      margin-top: 30px;
+    }
+
+    .github-stats-section h3 {
+      margin-bottom: 16px;
+    }
+
+    .github-stats-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .github-stats-grid img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* ─── Certifications Section ─── */
+    .certifications {
+      margin-top: 30px;
+    }
+
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .cert-item {
+      background: var(--border-gradient-onyx);
+      border: 1px solid var(--jet);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: default;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cert-item::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      background: var(--bg-gradient-jet);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    .cert-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 22px;
+    }
+
+    .cert-info {
+      flex: 1;
+    }
+
+    .cert-info h5 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 3px;
+      color: var(--white-2);
+    }
+
+    .cert-info span {
+      font-size: 12px;
+      color: var(--light-gray-70, #a8a8b0);
+    }
+
+    .cert-view-btn {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange-yellow-crayola);
+      font-size: 18px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .cert-view-btn:hover {
+      background: rgba(227, 168, 77, 0.15);
+      border-color: rgba(227, 168, 77, 0.3);
+    }
+
+    /* ─── Certificate Modal ─── */
+    .cert-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 20px;
+    }
+
+    .cert-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cert-modal {
+      background: var(--eerie-black-2);
+      border: 1px solid var(--jet);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 700px;
+      width: 100%;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .cert-modal-overlay.active .cert-modal {
+      transform: scale(1);
+    }
+
+    .cert-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--onyx);
+      border: none;
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white-2);
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .cert-modal-close:hover {
+      background: var(--jet);
+    }
+
+    .cert-modal-title {
+      color: var(--white-2);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-right: 40px;
+    }
+
+    .cert-modal-img-wrapper {
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .cert-modal-img-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      pointer-events: none;  /* disable right-click save on some browsers */
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* ─── Skills Section ─── */
+    .skills-category {
+      margin-top: 25px;
+    }
+
+    .skills-category:first-child {
+      margin-top: 0;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .category-header h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--orange-yellow-crayola, #e3a84d);
+      margin: 0;
+    }
+
+    .category-header .category-icon {
+      font-size: 20px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(227, 168, 77, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .skill-card img {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 8px;
+      object-fit: contain;
+    }
+
+    .skill-card .skill-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #ddd;
+    }
+
+    /* ─── Project Cards ─── */
+    .project-card-enhanced {
+      position: relative;
+      height: 100%;
+      background: var(--border-gradient-onyx);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .project-card-enhanced:hover {
+      transform: translateY(-5px);
+      border-color: rgba(227, 168, 77, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .project-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card-enhanced:hover .project-image-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .project-content {
+      flex: 1;
+      display: flex;
+      padding: 20px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-header {
+      margin-bottom: 12px;
+    }
+
+    .project-title-enhanced {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .project-category-badge {
+      display: inline-block;
+      background: rgba(227, 168, 77, 0.15);
+      color: var(--orange-yellow-crayola, #e3a84d);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .project-description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #aaa;
+      margin-bottom: 14px;
+    }
+
+    .project-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .tech-tag {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #ccc;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .project-link-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-demo {
+      background: var(--orange-yellow-crayola, #e3a84d);
+      color: #1e1e1e;
+    }
+
+    .btn-demo:hover {
+      background: #d99a3d;
+    }
+
+    .btn-github {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-github:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ─── EmailJS Status ─── */
+    .form-status {
+      margin-top: 12px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+
+    .form-status.success {
+      display: block;
+      background: rgba(50, 205, 50, 0.12);
+      border: 1px solid rgba(50, 205, 50, 0.3);
+      color: #5ce65c;
+    }
+
+    .form-status.error {
+      display: block;
+      background: rgba(255, 80, 80, 0.12);
+      border: 1px solid rgba(255, 80, 80, 0.3);
+      color: #ff6b6b;
+    }
+
+    /* ─── Achievements Grid ─── */
+    .achieve-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .achieve-card {
+      position: relative;
+      background: var(--border-gradient-onyx);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 24px 20px 20px;
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+
+    .achieve-card::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      background: var(--bg-gradient-jet);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    .achieve-card:hover {
+      border-color: rgba(227, 168, 77, 0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .achieve-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .achieve-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white-2);
+      margin-bottom: 8px;
+    }
+
+    .achieve-card p {
+      font-size: 13px;
+      color: var(--light-gray);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ─── Experience bullet list ─── */
+    .exp-bullet-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .exp-bullet-list li {
+      position: relative;
+      padding-left: 16px;
+      font-size: var(--fs-6);
+      color: var(--light-gray);
+      font-weight: var(--fw-300);
+      line-height: 1.6;
+    }
+
+    .exp-bullet-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--orange-yellow-crayola);
+      font-size: 11px;
+      top: 3px;
+    }
+
+    /* ─── Skill tag pills (for Education/Skills/Achievements pages) ─── */
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--light-gray);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+
+    /* ─── Education badge ─── */
+    .edu-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .edu-badge {
+      background: rgba(227, 168, 77, 0.12);
+      color: var(--orange-yellow-crayola);
+      border: 1px solid rgba(227, 168, 77, 0.25);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    /* ─── Responsive ─── */
+    @media (min-width: 580px) {
+      .achieve-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 580px) {
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+    }
+
+    @media (max-width: 580px) {
+      .project-links {
+        flex-direction: column;
+      }
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--light-gray-70);
+      font-size: 12px;
+      margin-bottom: 60px; /* space untuk bottom navbar mobile */
+    }
+
+    @media (min-width: 1024px) {
+      .footer {
+        margin-bottom: 20px;
+      }
+    }
+    
+    /* ─── Input with icon ─── */
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--light-gray-70);
+      font-size: 16px;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .textarea-icon {
+      top: 18px;
+      transform: none;
+    }
+
+    .form-input.has-icon {
+      padding-left: 44px;
+    }
+
+    .input-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .input-wrapper {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- ============================================================
-       NAVBAR
-       ============================================================ -->
-  <nav id="navbar">
-    <div class="nav-inner">
+  <main>
 
-      <!-- Logo — change "JD" to your initials -->
-      <a href="#hero" class="nav-logo">JD.</a>
+    <!-- ══════════════════════════════════════
+         SIDEBAR
+    ══════════════════════════════════════ -->
+    <aside class="sidebar" data-sidebar>
 
-      <!-- Desktop nav links -->
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#achievements">Achievements</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
-      <div class="nav-right">
-        <!-- Dark/Light toggle -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <i class="fas fa-moon" id="themeIcon"></i>
-          <span id="themeLabel">Dark</span>
-        </button>
-
-        <!-- Hamburger — mobile only -->
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
+      <div class="sidebar-info">
+        <figure class="avatar-box">
+          <img src="./assets/images/my-avatar.png" alt="Humairah Ramli" width="80">
+        </figure>
+        <div class="info-content">
+          <h1 class="name" title="Humairah Ramli">Humairah Ramli</h1>
+          <p class="title">Application Developer</p>
+        </div>
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+          <ion-icon name="chevron-down"></ion-icon>
         </button>
       </div>
-    </div>
 
-    <!-- Mobile dropdown -->
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#about"          onclick="closeMobile()">About</a>
-      <a href="#education"      onclick="closeMobile()">Education</a>
-      <a href="#experience"     onclick="closeMobile()">Experience</a>
-      <a href="#skills"         onclick="closeMobile()">Skills</a>
-      <a href="#achievements"   onclick="closeMobile()">Achievements</a>
-      <a href="#projects"       onclick="closeMobile()">Projects</a>
-      <a href="#certifications" onclick="closeMobile()">Certifications</a>
-      <a href="#contact"        onclick="closeMobile()">Contact</a>
-    </div>
-  </nav>
+      <div class="sidebar-info_more">
 
+        <div class="separator"></div>
 
-  <!-- ============================================================
-       HERO SECTION
-       To update: edit name, bio, email, github, linkedin links
-       ============================================================ -->
-  <section id="hero">
-    <div class="hero-content">
+        <ul class="contacts-list">
+          <li class="contact-item">
+            <div class="icon-box"><ion-icon name="mail-outline"></ion-icon></div>
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+              <a href="mailto:humairahramli30@gmail.com" class="contact-link">humairahramli30@gmail.com</a>            </div>
+          </li>
+          <li class="contact-item">
+            <div class="icon-box"><ion-icon name="phone-portrait-outline"></ion-icon></div>
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+              <a href="tel:+601154464659" class="contact-link">(+60) 11-544 64659</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="icon-box"><ion-icon name="location-outline"></ion-icon></div>
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+              <address>Selangor, Malaysia</address>
+            </div>
+          </li>
+        </ul>
 
-      <div class="hero-badge">
-        <span></span>
-        Open to opportunities
-      </div>
-
-      <!-- UPDATE: Your name here -->
-      <h1 class="hero-name">
-        Hi, I'm <span class="gradient-text">John Doe</span>
-      </h1>
-
-      <!-- Typing animation roles are in main.js → roles[] array -->
-      <p class="hero-role">
-        <span id="typedText" class="typed-text"></span>
-      </p>
-
-      <!-- UPDATE: Your short bio here -->
-      <p class="hero-bio">
-        Frontend-focused Application Developer with hands-on experience building scalable
-        web and mobile applications for government-level projects. Passionate about clean
-        code, great UX, and continuous learning.
-      </p>
-
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">
-          <i class="fas fa-folder-open"></i> View Projects
-        </a>
-        <!-- UPDATE: Make sure resume.pdf is in your root folder -->
-        <a href="resume.pdf" download class="btn btn-outline">
-          <i class="fas fa-download"></i> Download CV
-        </a>
-      </div>
-
-      <!-- UPDATE: Replace # with your actual links -->
-      <div class="hero-social">
-        <a href="mailto:johndoe@email.com" title="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://github.com/johndoe" target="_blank" title="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/johndoe" target="_blank" title="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-
-      <div class="scroll-hint">
-        <i class="fas fa-chevron-down"></i>
-        <span>Scroll to explore</span>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       ABOUT SECTION
-       To update: edit bio paragraphs and info pills below
-       ============================================================ -->
-  <section id="about">
-    <div class="section">
-      <div class="title-line"></div>
-      <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
-      <p class="section-subtitle">A little bit about who I am</p>
-
-      <div class="about-grid reveal">
-
-        <!-- UPDATE: Replace icon with your photo
-             Example: <img src="assets/images/photo.jpg" alt="John Doe" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
-        -->
-        <div class="about-photo">
-          <i class="fas fa-user"></i>
+        <div style="display: flex; gap: 10px; padding: 0 16px;">
+          <a href="Resume_Humairah.pdf" target="_blank" class="cv-btn" style="flex: 1; justify-content: center;">
+            <ion-icon name="eye-outline"></ion-icon>
+            Resume
+          </a>
         </div>
 
-        <div class="about-text">
-          <h3>Frontend-Focused Application Developer</h3>
+        <div class="separator"></div>
 
-          <!-- UPDATE: Edit these paragraphs anytime -->
+        <ul class="social-list">
+          <li class="social-item">
+            <a href="https://github.com/R8disH3r3" target="_blank" class="social-link" title="GitHub">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://www.linkedin.com/public-profile/settings/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact_info%3BH29qduFIR%2B2lAZOdgvmuIQ%3D%3D"
+              target="_blank" class="social-link" title="LinkedIn">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+    <!-- ══════════════════════════════════════
+         MAIN CONTENT
+    ══════════════════════════════════════ -->
+    <div class="main-content">
+
+      <!-- ── NAVBAR (8 tabs) ── -->
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a class="navbar-link active" href="#about" data-nav-link>About</a>
+          </li>
+          <li class="navbar-item">
+            <a class="navbar-link" href="#education" data-nav-link>Education</a>
+          </li>
+          <li class="navbar-item">
+            <a class="navbar-link" href="#experience" data-nav-link>Experience</a>
+          </li>
+          <li class="navbar-item">
+            <a class="navbar-link" href="#skills" data-nav-link>Skills</a>
+          </li>
+          <li class="navbar-item">
+            <a class="navbar-link" href="#achievements" data-nav-link>Achievements</a>
+          </li>
+          <li class="navbar-item">
+            <a class="navbar-link" href="#projects" data-nav-link>Projects</a>
+          </li>
+          <li class="navbar-item">
+            <a class="navbar-link" href="#certifications" data-nav-link>Certifications</a>
+          </li>
+          <li class="navbar-item">
+            <a class="navbar-link" href="#contact" data-nav-link>Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+
+      <!-- ══ ABOUT ══ -->
+      <article class="about" id="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
           <p>
             I'm a fresh Computer Science graduate with hands-on professional experience
             building scalable web and mobile applications for government-level digital
             transformation projects in Malaysia.
           </p>
           <p>
-            Proficient in Vue.js and Flutter, with strong foundations in REST API integration,
+            Proficient in Vue.js and Flutter, with grounded in REST API integration,
             responsive UI/UX design, and agile development practices. Contributed to successful
             UAT acceptance on Kampung Digital Melaka 2.0 and the SPAN Mobile Application.
           </p>
@@ -163,439 +781,588 @@
             Seeking to grow as a Frontend Developer while expanding expertise into fullstack
             and mobile development.
           </p>
+        </section>
 
-          <!-- UPDATE: Your location and email -->
-          <div class="about-info">
-            <div class="info-pill"><i class="fas fa-map-marker-alt"></i> Selangor, Malaysia</div>
-            <div class="info-pill"><i class="fas fa-envelope"></i> johndoe@email.com</div>
-            <div class="info-pill"><i class="fas fa-briefcase"></i> Open to Work</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <section class="service">
+          <h3 class="h3 service-title">What I'm doing</h3>
+          <ul class="service-list">
 
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="code-slash-outline" style="font-size: 40px; color: var(--orange-yellow-crayola);"></ion-icon>              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Frontend Development</h4>
+                <p class="service-item-text">
+                  Building responsive and interactive UIs using Vue.js, JavaScript, and modern CSS frameworks like
+                  Tailwind and Vuetify.
+                </p>
+              </div>
+            </li>
 
-  <!-- ============================================================
-       EDUCATION SECTION
-       To update: edit degree, university, GPA, date, badges
-       ============================================================ -->
-  <section id="education" class="bg-tint">
-    <div class="section">
-      <div class="title-line"></div>
-      <h2 class="section-title"><span class="gradient-text">Education</span></h2>
-      <p class="section-subtitle">My academic background</p>
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="globe-outline" style="font-size: 40px; color: var(--orange-yellow-crayola);"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web Application Development</h4>
+                <p class="service-item-text">
+                  Developing full-featured web apps with clean code, REST API integration, and good UX practices for
+                  government-level systems.
+                </p>
+              </div>
+            </li>
 
-      <div class="card reveal">
-        <div class="edu-card">
-          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
-          <div class="edu-info">
-            <!-- UPDATE: Your degree details -->
-            <h3>Bachelor of Science Computer (Honours) in Netcentric Computing</h3>
-            <p class="school">Universiti Teknologi Mara (UiTM) — Shah Alam, Malaysia</p>
-            <p class="meta">October 2022 – February 2026</p>
-            <div class="edu-badges">
-              <span class="badge">GPA: 3.67 / 4.0</span>
-              <span class="badge">🏅 Dean's List</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="phone-portrait-outline" style="font-size: 40px; color: var(--orange-yellow-crayola);"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Mobile Development</h4>
+                <p class="service-item-text">
+                  Building cross-platform mobile apps with Flutter and Dart, featuring Material Design UI and real-time
+                  API sync.
+                </p>
+              </div>
+            </li>
 
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="people-outline" style="font-size: 40px; color: var(--orange-yellow-crayola);"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Agile Collaboration</h4>
+                <p class="service-item-text">
+                  Working in agile teams using Git, GitHub, and Scrum to deliver features consistently and participate
+                  in code reviews.
+                </p>
+              </div>
+            </li>
 
-  <!-- ============================================================
-       EXPERIENCE SECTION
-       To update: add/remove timeline-item blocks below
-       Each block = one job. Most recent job goes first (top).
-       ============================================================ -->
-  <section id="experience">
-    <div class="section">
-      <div class="title-line"></div>
-      <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
-      <p class="section-subtitle">My professional journey so far</p>
-
-      <div class="timeline reveal">
-
-        <!-- JOB 1: Most recent first -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <!-- UPDATE: Date, title, company -->
-          <p class="timeline-date">January 2026 – Present</p>
-          <h3 class="timeline-title">Junior Executive Application Developer</h3>
-          <p class="timeline-company">Tech Company Sdn. Bhd. · Full-time</p>
-          <ul class="timeline-list">
-            <!-- UPDATE: Edit bullet points here -->
-            <li>Gathered and documented functional requirements to translate public sector operational needs into scalable technical workflows.</li>
-            <li>Supported the full SDLC — system requirement analysis, technical documentation, and cross-functional project scoping.</li>
-            <li>Conducted continuous system testing, end-to-end debugging, and integration verification to ensure flawless UAT delivery.</li>
-            <li>Collaborated in agile teams using Git on GitHub, contributing to code reviews and version control best practices.</li>
-            <li>Developed and maintained frontend and backend features for government web and mobile applications.</li>
-            <li>Participated in testing, debugging, and system integration for smooth deployment and minimal production issues.</li>
           </ul>
+        </section>
+
+      </article>
+
+
+      <!-- ══ EDUCATION ══ -->
+      <article class="education" id="education">
+
+        <header>
+          <h2 class="h2 article-title">Education</h2>
+        </header>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="school-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Academic Background</h3>
+          </div>
+
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Universiti Teknologi Mara (UiTM) — Shah Alam</h4>
+              <span>October 2022 – February 2026</span>
+              <p class="timeline-text">
+                Bachelor of Science Computer (Honours) in Netcentric Computing.
+              </p>
+              <div class="edu-badges">
+                <span class="edu-badge">GPA: 3.67 / 4.0</span>
+                <span class="edu-badge">🏅 Dean's List</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+      </article>
+
+
+      <!-- ══ EXPERIENCE ══ -->
+      <article class="experience" id="experience">
+
+        <header>
+          <h2 class="h2 article-title">Experience</h2>
+        </header>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="briefcase-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Work Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Junior Executive Application Developer — Map2u Sdn. Bhd.</h4>
+              <span>January 2026 – Present · Contractual</span>
+              <ul class="exp-bullet-list">
+                <li>Gathered and documented functional requirements to translate public sector operational needs into
+                  scalable technical workflows.</li>
+                <li>Supported the full SDLC — system requirement analysis, technical documentation, and cross-functional
+                  project scoping.</li>
+                <li>Conducted continuous system testing, end-to-end debugging, and integration verification to ensure
+                  flawless UAT delivery.</li>
+                <li>Collaborated in agile teams using Git on GitHub, contributing to code reviews and version control
+                  best practices.</li>
+                <li>Developed and maintained frontend and backend features for government web and mobile applications.
+                </li>
+                <li>Participated in testing, debugging, and system integration for smooth deployment and minimal
+                  production issues.</li>
+              </ul>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Application Developer (Intern) — Map2u Sdn. Bhd.</h4>
+              <span>September 2025 – December 2025 · Internship</span>
+              <ul class="exp-bullet-list">
+                <li>Assisted in frontend and backend development of government web applications.</li>
+                <li>Supported development using Laravel and JavaScript.</li>
+                <li>Contributed to UI implementation and database-related functionalities.</li>
+                <li>Worked closely with senior developers in system testing and enhancement tasks.</li>
+              </ul>
+            </li>
+
+          </ol>
+        </section>
+
+      </article>
+
+
+      <!-- ══ SKILLS ══ -->
+      <article class="skills" id="skills">
+
+        <header>
+          <h2 class="h2 article-title">Skills</h2>
+        </header>
+
+        <section class="skill" style="margin-top: 10px;">
+          <div class="content-card" style="padding: 25px;">
+
+            <div class="skills-category">
+              <div class="category-header">
+                <span class="category-icon">🎨</span>
+                <h4>Frontend</h4>
+              </div>
+              <div class="skills-grid">
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                  <div class="skill-name">HTML</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                  <div class="skill-name">CSS</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                    alt="JavaScript">
+                  <div class="skill-name">JavaScript</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
+                  <div class="skill-name">Vue.js</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                    alt="Tailwind">
+                  <div class="skill-name">Tailwind CSS</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuetify/vuetify-original.svg"
+                    alt="Vuetify">
+                  <div class="skill-name">Vuetify</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skills-category">
+              <div class="category-header">
+                <span class="category-icon">📱</span>
+                <h4>Mobile</h4>
+              </div>
+              <div class="skills-grid">
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+                    alt="Flutter">
+                  <div class="skill-name">Flutter</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart">
+                  <div class="skill-name">Dart</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skills-category">
+              <div class="category-header">
+                <span class="category-icon">⚙️</span>
+                <h4>Backend & Database</h4>
+              </div>
+              <div class="skills-grid">
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                  <div class="skill-name">PHP</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg"
+                    alt="Laravel">
+                  <div class="skill-name">Laravel</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                    alt="Node.js">
+                  <div class="skill-name">Node.js</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                  <div class="skill-name">MySQL</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skills-category">
+              <div class="category-header">
+                <span class="category-icon">🛠️</span>
+                <h4>Tools & DevOps</h4>
+              </div>
+              <div class="skills-grid">
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                  <div class="skill-name">Git</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                  <div class="skill-name">GitHub</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                  <div class="skill-name">Figma</div>
+                </div>
+                <div class="skill-card">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg"
+                    alt="Postman">
+                  <div class="skill-name">Postman</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skills-category">
+              <div class="category-header">
+                <span class="category-icon">📄</span>
+                <h4>Documentation & Analysis</h4>
+              </div>
+              <div class="skill-tags">
+                <span class="skill-tag">Requirement Gathering</span>
+                <span class="skill-tag">Use Cases / DFDs</span>
+                <span class="skill-tag">SDLC</span>
+                <span class="skill-tag">UAT Support</span>
+                <span class="skill-tag">Agile / Scrum</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </article>
+
+
+      <!-- ══ ACHIEVEMENTS ══ -->
+      <article class="achievements" id="achievements">
+
+        <header>
+          <h2 class="h2 article-title">Achievements</h2>
+        </header>
+
+        <div class="achieve-grid" style="margin-top: 10px;">
+
+          <div class="achieve-card">
+            <div class="achieve-icon">🏛️</div>
+            <h4>Kampung Digital Melaka 2.0</h4>
+            <p>Contributed to a state-wide government digitalization system targeting residents across Melaka —
+              progressing from development to FAT stage within 9 months, on track for live deployment by July 2026.</p>
+          </div>
+
+          <div class="achieve-card">
+            <div class="achieve-icon">💧</div>
+            <h4>SPAN Mobile Application</h4>
+            <p>Actively developing a mobile app for Malaysia's national water supply regulatory body (SPAN), supporting
+              11 states and 2 Federal Territories with an estimated reach of over 27 million users.</p>
+          </div>
+
+          <div class="achieve-card">
+            <div class="achieve-icon">🏅</div>
+            <h4>Dean's List Graduate</h4>
+            <p>Graduated with Dean's List recognition and GPA 3.67/4.0 in Bachelor of Science (Hons) Netcentric
+              Computing — demonstrating consistent academic performance throughout the programme.</p>
+          </div>
+
+          <div class="achieve-card">
+            <div class="achieve-icon">📄</div>
+            <h4>End-to-End SRS Authoring</h4>
+            <p>Authored comprehensive System Requirement Specifications (SRS) for a state-wide government digitalisation
+              platform, bridging business stakeholders and technical development teams.</p>
+          </div>
+
+          <div class="achieve-card">
+            <div class="achieve-icon">🤖</div>
+            <h4>AI-Assisted Development Practice</h4>
+            <p>Utilised AI-assisted debugging tools to identify and resolve code errors prior to commit, and maintained
+              pull request discipline with senior lead review before merging.</p>
+          </div>
+
         </div>
 
-        <!-- JOB 2: Internship -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <p class="timeline-date">September 2025 – December 2025</p>
-          <h3 class="timeline-title">Application Developer (Intern)</h3>
-          <p class="timeline-company">Tech Company Sdn. Bhd. · Internship</p>
-          <ul class="timeline-list">
-            <li>Assisted in frontend and backend development of government web applications.</li>
-            <li>Supported development using Laravel and JavaScript.</li>
-            <li>Contributed to UI implementation and database-related functionalities.</li>
-            <li>Worked closely with senior developers in system testing and enhancement tasks.</li>
+      </article>
+
+
+      <!-- ══ PROJECTS ══ -->
+      <article class="projects" id="projects">
+
+        <header>
+          <h2 class="h2 article-title">Projects</h2>
+        </header>
+
+        <section class="projects-section">
+          <ul class="project-list"
+            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; align-items: stretch;">
+
+            <li class="project-item active" data-filter-item data-category="vue">
+              <div class="project-card-enhanced">
+                <div class="project-image-wrapper">
+                  <img src="./assets/images/project-kdm.png" alt="Kampung Digital Melaka 2.0">
+                  <div class="project-overlay"></div>
+                </div>
+                <div class="project-content">
+                  <div class="project-header">
+                    <h3 class="project-title-enhanced">Kampung Digital Melaka 2.0</h3>
+                    <span class="project-category-badge">✅ Completed (FAT Stage)</span>
+                  </div>
+                  <p class="project-description">
+                    A responsive property and premise management system for a government digitalization initiative.
+                    Features role-based access control, advanced data tables, a self-service complaint tracking module,
+                    and RESTful API integration via Axios.
+                  </p>
+                  <div class="project-tech-stack">
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">Vuetify</span>
+                    <span class="tech-tag">Laravel</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">REST API</span>
+                    <span class="tech-tag">RBAC</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="#" class="project-link-btn btn-github" style="cursor: default; opacity: 0.5; pointer-events: none;">
+                      <ion-icon name="time-outline"></ion-icon>
+                      Live Demo Coming Soon
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="flutter">
+              <div class="project-card-enhanced">
+                <div class="project-image-wrapper">
+                  <img src="./assets/images/project-span.png" alt="SPAN Mobile Application">
+                  <div class="project-overlay"></div>
+                </div>
+                <div class="project-content">
+                  <div class="project-header">
+                    <h3 class="project-title-enhanced">SPAN Mobile Application</h3>
+                    <span class="project-category-badge">🔄 In Progress</span>
+                  </div>
+                  <p class="project-description">
+                    A cross-platform mobile application for Malaysia's water supply and sewerage data management system.
+                    Features responsive Material Design UI, real-time API sync, reusable widgets, and multi-screen
+                    navigation with dynamic filtering.
+                  </p>
+                  <div class="project-tech-stack">
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">Dart</span>
+                    <span class="tech-tag">REST API</span>
+                    <span class="tech-tag">Material Design</span>
+                    <span class="tech-tag">Agile</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="#" class="project-link-btn btn-github" style="cursor: default; opacity: 0.5; pointer-events: none;">
+                      <ion-icon name="time-outline"></ion-icon>
+                      Live Demo Coming Soon
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
           </ul>
-        </div>
+        </section>
 
-        <!-- TO ADD A NEW JOB: Copy the block above and paste here -->
-
-      </div>
-    </div>
-  </section>
+      </article>
 
 
-  <!-- ============================================================
-       SKILLS SECTION
-       To update: add/remove <span class="skill-tag"> inside any category
-       To add a new category: copy a full .card.skill-category block
-       ============================================================ -->
-  <section id="skills" class="bg-tint">
-    <div class="section">
-      <div class="title-line"></div>
-      <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
-      <p class="section-subtitle">Technologies and tools I work with</p>
+      <!-- ══ CERTIFICATIONS ══ -->
+      <article class="certifications" id="certifications">
 
-      <div class="skills-grid reveal">
+        <header>
+          <h2 class="h2 article-title">Certifications</h2>
+        </header>
 
-        <div class="card skill-category">
-          <h4><i class="fas fa-laptop-code"></i> Frontend</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">CSS</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Vue.js</span>
-            <span class="skill-tag">Vuetify</span>
-            <span class="skill-tag">Tailwind CSS</span>
-          </div>
-        </div>
+        <div class="cert-list" style="margin-top: 10px;">
 
-        <div class="card skill-category">
-          <h4><i class="fas fa-mobile-alt"></i> Mobile</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Flutter</span>
-            <span class="skill-tag">Dart</span>
-            <span class="skill-tag">Material Design</span>
-          </div>
-        </div>
-
-        <div class="card skill-category">
-          <h4><i class="fas fa-server"></i> Backend & Database</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">PHP</span>
-            <span class="skill-tag">Laravel</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">MySQL</span>
-            <span class="skill-tag">RESTful API</span>
-          </div>
-        </div>
-
-        <div class="card skill-category">
-          <h4><i class="fas fa-tools"></i> Tools & DevOps</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">GitHub</span>
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">Agile / Scrum</span>
-            <span class="skill-tag">AWS (Foundational)</span>
-          </div>
-        </div>
-
-        <div class="card skill-category">
-          <h4><i class="fas fa-file-alt"></i> Documentation & Analysis</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Requirement Gathering</span>
-            <span class="skill-tag">SRS</span>
-            <span class="skill-tag">Use Cases / DFDs</span>
-            <span class="skill-tag">SDLC</span>
-            <span class="skill-tag">UAT Support</span>
-          </div>
-        </div>
-
-        <div class="card skill-category">
-          <h4><i class="fas fa-chart-bar"></i> Productivity</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Microsoft Word</span>
-            <span class="skill-tag">Microsoft PowerPoint</span>
-            <span class="skill-tag">Microsoft Excel</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       ACHIEVEMENTS SECTION
-       To update: edit text inside each .achieve-card
-       To add new: copy one full .card.achieve-card block and paste
-       ============================================================ -->
-  <section id="achievements">
-    <div class="section">
-      <div class="title-line"></div>
-      <h2 class="section-title">Key <span class="gradient-text">Achievements</span></h2>
-      <p class="section-subtitle">Milestones I'm proud of</p>
-
-      <div class="achieve-grid reveal">
-
-        <div class="card achieve-card">
-          <div class="achieve-icon">🏛️</div>
-          <h4>Kampung Digital Melaka 2.0</h4>
-          <p>Contributed to a state-wide government digitalization system targeting residents across Melaka — progressing from development to FAT stage within 9 months, on track for live deployment by July 2026.</p>
-        </div>
-
-        <div class="card achieve-card">
-          <div class="achieve-icon">💧</div>
-          <h4>SPAN Mobile Application</h4>
-          <p>Actively developing a mobile app for Malaysia's national water supply regulatory body (SPAN), supporting 11 states and 2 Federal Territories with an estimated reach of over 27 million users.</p>
-        </div>
-
-        <div class="card achieve-card">
-          <div class="achieve-icon">🏅</div>
-          <h4>Dean's List Graduate</h4>
-          <p>Graduated with Dean's List recognition and GPA 3.67/4.0 in Bachelor of Science (Hons) Netcentric Computing — demonstrating consistent academic performance throughout the programme.</p>
-        </div>
-
-        <div class="card achieve-card">
-          <div class="achieve-icon">📄</div>
-          <h4>End-to-End SRS Authoring</h4>
-          <p>Authored comprehensive System Requirement Specifications (SRS) for a state-wide government digitalisation platform, bridging business stakeholders and technical development teams.</p>
-        </div>
-
-        <div class="card achieve-card">
-          <div class="achieve-icon">🤖</div>
-          <h4>AI-Assisted Development Practice</h4>
-          <p>Utilised AI-assisted debugging tools to identify and resolve code errors prior to commit, and maintained pull request discipline with senior lead review before merging.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       PROJECTS SECTION
-       To update: edit project title, description, tech tags
-       To add image: inside .project-img div, replace the icon with:
-         <img src="assets/images/yourimage.png" alt="Project Name">
-       To add new project: copy one full .card.project-card block
-       ============================================================ -->
-  <section id="projects" class="bg-tint">
-    <div class="section">
-      <div class="title-line"></div>
-      <h2 class="section-title">My <span class="gradient-text">Projects</span></h2>
-      <p class="section-subtitle">Things I've built professionally</p>
-
-      <div class="projects-grid reveal">
-
-        <!-- PROJECT 1 -->
-        <div class="card project-card">
-          <div class="project-img">
-            <!-- UPDATE: Replace icon with your screenshot image
-                 <img src="assets/images/kdm.png" alt="Kampung Digital Melaka 2.0"> -->
-            <i class="fas fa-city"></i>
-          </div>
-          <span class="project-status status-done">
-            <i class="fas fa-circle"></i> Completed (FAT Stage)
-          </span>
-          <h3>Kampung Digital Melaka 2.0</h3>
-          <p>A responsive property and premise management system for a government digitalization initiative. Features role-based access control, advanced data tables, a self-service complaint tracking module, and RESTful API integration via Axios.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">Vue.js</span>
-            <span class="tech-tag">Vuetify</span>
-            <span class="tech-tag">Laravel</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">REST API</span>
-            <span class="tech-tag">RBAC</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fas fa-lock"></i> Private Repo</a>
-          </div>
-        </div>
-
-        <!-- PROJECT 2 -->
-        <div class="card project-card">
-          <div class="project-img">
-            <!-- UPDATE: Replace icon with your screenshot image
-                 <img src="assets/images/span.png" alt="SPAN Mobile App"> -->
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <span class="project-status status-wip">
-            <i class="fas fa-circle"></i> In Progress
-          </span>
-          <h3>SPAN Mobile Application</h3>
-          <p>A cross-platform mobile application for Malaysia's water supply and sewerage data management system. Features responsive Material Design UI, real-time API sync, reusable widgets, and multi-screen navigation with dynamic filtering.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">Flutter</span>
-            <span class="tech-tag">Dart</span>
-            <span class="tech-tag">REST API</span>
-            <span class="tech-tag">Material Design</span>
-            <span class="tech-tag">Agile</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fas fa-lock"></i> Private Repo</a>
-          </div>
-        </div>
-
-        <!-- TO ADD NEW PROJECT: Copy one project block above and paste here -->
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       CERTIFICATIONS SECTION
-       To update: edit cert name and issuer inside each .cert-card
-       To add new: copy one .card.cert-card block and paste
-       ============================================================ -->
-  <section id="certifications">
-    <div class="section">
-      <div class="title-line"></div>
-      <h2 class="section-title">My <span class="gradient-text">Certifications</span></h2>
-      <p class="section-subtitle">Continuous learning & professional development</p>
-
-      <div class="cert-grid reveal">
-
-        <div class="card cert-card">
-          <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
-          <div class="cert-info">
-            <h4>Introduction to IoT</h4>
-            <span>Cisco Networking Academy</span>
-          </div>
-        </div>
-
-        <div class="card cert-card">
-          <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-          <div class="cert-info">
-            <h4>Google Cybersecurity Professional Certificate</h4>
-            <span>Coursera · Google</span>
-          </div>
-        </div>
-
-        <div class="card cert-card">
-          <div class="cert-icon"><i class="fab fa-aws"></i></div>
-          <div class="cert-info">
-            <h4>AWS Bootcamp</h4>
-            <span>Iverson Workshop</span>
-          </div>
-        </div>
-
-        <div class="card cert-card">
-          <div class="cert-icon"><i class="fas fa-flag"></i></div>
-          <div class="cert-info">
-            <h4>Girl CTF</h4>
-            <span>Cybersecurity Competition · Participant</span>
-          </div>
-        </div>
-
-        <!-- TO ADD NEW CERT: Copy one .card.cert-card block above and paste here -->
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       CONTACT SECTION
-       To update: edit email, github, linkedin links
-       Form setup: replace YOUR_FORM_ID with ID from formspree.io
-       ============================================================ -->
-  <section id="contact" class="bg-tint">
-    <div class="section">
-      <div class="title-line"></div>
-      <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
-      <p class="section-subtitle">Let's connect and build something great</p>
-
-      <div class="contact-grid reveal">
-
-        <div class="contact-info">
-          <h3>Let's Talk! 👋</h3>
-          <p>Whether it's a job opportunity, collaboration, or just a friendly hello — my inbox is always open.</p>
-
-          <div class="contact-links">
-            <!-- UPDATE: Your actual contact details -->
-            <a href="mailto:johndoe@email.com" class="contact-link">
-              <i class="fas fa-envelope"></i> johndoe@email.com
-            </a>
-            <a href="https://github.com/johndoe" target="_blank" class="contact-link">
-              <i class="fab fa-github"></i> github.com/johndoe
-            </a>
-            <a href="https://linkedin.com/in/johndoe" target="_blank" class="contact-link">
-              <i class="fab fa-linkedin-in"></i> linkedin.com/in/johndoe
-            </a>
-            <div class="contact-link">
-              <i class="fas fa-map-marker-alt"></i> Selangor, Malaysia
+          <div class="cert-item" data-cert-img="./assets/certs/cisco-iot.png" data-cert-title="Introduction to IoT">
+            <div class="cert-icon">🌐</div>
+            <div class="cert-info">
+              <h5>Introduction to IoT</h5>
+              <span>Cisco Networking Academy</span>
             </div>
-          </div>
-        </div>
-
-        <div>
-          <!--
-            CONTACT FORM SETUP:
-            1. Go to https://formspree.io → Sign up (free)
-            2. Create a new form → copy your Form ID
-            3. Replace YOUR_FORM_ID below
-            Example: action="https://formspree.io/f/abcd1234"
-          -->
-          <form id="contactForm" class="contact-form"
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST">
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" placeholder="e.g. Ahmad Razif" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Your Email</label>
-              <input type="email" id="email" name="email" placeholder="e.g. ahmad@email.com" required />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="What would you like to say?" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <i class="fas fa-paper-plane"></i> Send Message
+            <button class="cert-view-btn">
+              <ion-icon name="eye-outline"></ion-icon>
             </button>
-          </form>
-
-          <!-- Shows after form is submitted successfully -->
-          <div class="form-success" id="formSuccess">
-            <i class="fas fa-check-circle"></i>
-            <p><strong>Message sent!</strong> I'll get back to you soon.</p>
           </div>
+
+          <div class="cert-item" data-cert-img="./assets/certs/google-cybersecurity.png" data-cert-title="Google Cybersecurity Professional Certificate">
+            <div class="cert-icon">🛡️</div>
+            <div class="cert-info">
+              <h5>Google Cybersecurity Professional Certificate</h5>
+              <span>Coursera · Google</span>
+            </div>
+            <button class="cert-view-btn">
+              <ion-icon name="eye-outline"></ion-icon>
+            </button>
+          </div>
+
+          <div class="cert-item" data-cert-img="./assets/certs/aws-bootcamp.png" data-cert-title="AWS Bootcamp">
+            <div class="cert-icon">☁️</div>
+            <div class="cert-info">
+              <h5>AWS Bootcamp</h5>
+              <span>Iverson Workshop</span>
+            </div>
+            <button class="cert-view-btn">
+              <ion-icon name="eye-outline"></ion-icon>
+            </button>
+          </div>
+
+          <div class="cert-item" data-cert-img="./assets/certs/girl-ctf.jpg" data-cert-title="Girl CTF">
+            <div class="cert-icon">🚩</div>
+            <div class="cert-info">
+              <h5>Girl CTF</h5>
+              <span>Cybersecurity Competition · Participant</span>
+            </div>
+            <button class="cert-view-btn">
+              <ion-icon name="eye-outline"></ion-icon>
+            </button>
+          </div>
+
         </div>
 
+      </article>
+
+      <!-- Certificate Modal -->
+      <div class="cert-modal-overlay" id="certModalOverlay">
+        <div class="cert-modal">
+          <button class="cert-modal-close" id="certModalClose">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <h4 class="cert-modal-title" id="certModalTitle"></h4>
+          <div class="cert-modal-img-wrapper">
+            <img src="" alt="Certificate" id="certModalImg" draggable="false">
+          </div>
+        </div>
       </div>
+
+      <!-- ══ CONTACT ══ -->
+      <article class="contact" id="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="contact-form">
+          <h3 class="h3 form-title">Send a Message</h3>
+
+          <form action="#" class="form" id="contact-form" data-form>
+
+            <div class="input-wrapper">
+              <div class="input-group">
+                <span class="input-icon"><ion-icon name="person-outline"></ion-icon></span>
+                <input type="text" name="from_name" id="from_name" class="form-input has-icon"
+                  placeholder="Full name" required data-form-input>
+              </div>
+              <div class="input-group">
+                <span class="input-icon"><ion-icon name="mail-outline"></ion-icon></span>
+                <input type="email" name="from_email" id="from_email" class="form-input has-icon"
+                  placeholder="Email address" required data-form-input>
+              </div>
+            </div>
+
+            <div class="input-group" style="margin-bottom: 16px;">
+              <span class="input-icon textarea-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+              <textarea name="message" id="message" class="form-input has-icon"
+                placeholder="Your Message" required data-form-input></textarea>
+            </div>
+
+            <button class="form-btn" type="submit" id="submit-btn" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+            <p class="form-status" id="form-success">✅ Message sent! I'll get back to you soon.</p>
+            <p class="form-status" id="form-error">❌ Something went wrong. Please try again or email me directly.</p>
+
+          </form>
+        </section>
+
+      </article>
     </div>
-  </section>
+     
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </button>
+
+  </main>
 
 
-  <!-- ============================================================
-       FOOTER
-       To update: change your name
-       ============================================================ -->
-  <footer>
-    <!-- UPDATE: Your name -->
-    <p>Designed & Built by <strong>John Doe</strong> · <span id="year"></span></p>
-    <p>Made with 💜 in Malaysia</p>
-  </footer>
+  <!-- SCRIPTS -->
+  <script src="./assets/js/script.js"></script>
 
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-  <!-- Link to your external JS file -->
-  <script src="assets/js/main.js"></script>
+  <!-- EmailJS Contact Form Handler -->
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg = document.getElementById('form-error');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.querySelector('span').textContent = 'Sending...';
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this).then(function () {
+          successMsg.classList.add('success');
+          contactForm.reset();
+          submitBtn.querySelector('span').textContent = 'Send Message';
+        }, function (error) {
+          errorMsg.classList.add('error');
+          console.error('EmailJS error:', error);
+          submitBtn.disabled = false;
+          submitBtn.querySelector('span').textContent = 'Send Message';
+        });
+      });
+    }
+  </script>
+
+  <!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 Humairah Ramli. All rights reserved.</p>
+</footer>
 
 </body>
+
 </html>
