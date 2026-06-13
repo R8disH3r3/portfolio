@@ -1,0 +1,27 @@
+/*-----------------------------------*\
+  #MAIN LAYOUT
+\*-----------------------------------*/
+
+main {
+  margin: 15px 4px;
+  margin-bottom: 75px;
+  min-width: 259px;
+}
+
+.main-content {
+  position: relative;
+}
+
+article {
+  margin-bottom: 30px;  /* Add gap between articles */
+}
+
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--light-gray-70);
+  font-size: 12px;
+  margin-bottom: 60px;
+}

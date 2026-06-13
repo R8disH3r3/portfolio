@@ -8,6 +8,8 @@
   <title>Humairah | Application Developer Portfolio</title>
 
   <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+  
+  <!-- Main CSS (imports all other CSS files) -->
   <link rel="stylesheet" href="./assets/css/style.css">
 
   <!-- Google Fonts -->
@@ -19,639 +21,16 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function () {
-      emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+      emailjs.init("eA9hpaH-UThqMMwPF");
     })();
   </script>
-
-  <style>
-    /* ─── Download CV Button ─── */
-    .cv-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--orange-yellow-crayola, #e3a84d);
-      color: #1e1e1e;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 9px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 14px;
-      transition: opacity 0.2s;
-    }
-
-    .cv-btn:hover {
-      opacity: 0.85;
-    }
-
-    /* ─── GitHub Stats ─── */
-    .github-stats-section {
-      margin-top: 30px;
-    }
-
-    .github-stats-section h3 {
-      margin-bottom: 16px;
-    }
-
-    .github-stats-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .github-stats-grid img {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    /* ─── Certifications Section ─── */
-    .certifications {
-      margin-top: 30px;
-    }
-
-    .cert-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .cert-item {
-      background: var(--border-gradient-onyx);
-      border: 1px solid var(--jet);
-      border-radius: 14px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      cursor: default;
-      justify-content: space-between;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cert-item::before {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      background: var(--bg-gradient-jet);
-      border-radius: inherit;
-      z-index: -1;
-    }
-
-    .cert-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 22px;
-    }
-
-    .cert-info {
-      flex: 1;
-    }
-
-    .cert-info h5 {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 3px;
-      color: var(--white-2);
-    }
-
-    .cert-info span {
-      font-size: 12px;
-      color: var(--light-gray-70, #a8a8b0);
-    }
-
-    .cert-view-btn {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--orange-yellow-crayola);
-      font-size: 18px;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: all 0.2s ease;
-    }
-
-    .cert-view-btn:hover {
-      background: rgba(227, 168, 77, 0.15);
-      border-color: rgba(227, 168, 77, 0.3);
-    }
-
-    /* ─── Certificate Modal ─── */
-    .cert-modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      padding: 20px;
-    }
-
-    .cert-modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .cert-modal {
-      background: var(--eerie-black-2);
-      border: 1px solid var(--jet);
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 700px;
-      width: 100%;
-      position: relative;
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-
-    .cert-modal-overlay.active .cert-modal {
-      transform: scale(1);
-    }
-
-    .cert-modal-close {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--onyx);
-      border: none;
-      border-radius: 8px;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white-2);
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 1;
-    }
-
-    .cert-modal-close:hover {
-      background: var(--jet);
-    }
-
-    .cert-modal-title {
-      color: var(--white-2);
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      padding-right: 40px;
-    }
-
-    .cert-modal-img-wrapper {
-      border-radius: 10px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.03);
-    }
-
-    .cert-modal-img-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      pointer-events: none;  /* disable right-click save on some browsers */
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    /* ─── Skills Section ─── */
-    .skills-category {
-      margin-top: 25px;
-    }
-
-    .skills-category:first-child {
-      margin-top: 0;
-    }
-
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .category-header h4 {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--orange-yellow-crayola, #e3a84d);
-      margin: 0;
-    }
-
-    .category-header .category-icon {
-      font-size: 20px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
-    }
-
-    .skill-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 14px;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: default;
-    }
-
-    .skill-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(227, 168, 77, 0.4);
-      transform: translateY(-2px);
-    }
-
-    .skill-card img {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 8px;
-      object-fit: contain;
-    }
-
-    .skill-card .skill-name {
-      font-size: 13px;
-      font-weight: 500;
-      color: #ddd;
-    }
-
-    /* ─── Project Cards ─── */
-    .project-card-enhanced {
-      position: relative;
-      height: 100%;
-      background: var(--border-gradient-onyx);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .project-card-enhanced:hover {
-      transform: translateY(-5px);
-      border-color: rgba(227, 168, 77, 0.4);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .project-image-wrapper {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .project-image-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .project-card-enhanced:hover .project-image-wrapper img {
-      transform: scale(1.05);
-    }
-
-    .project-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
-    }
-
-    .project-content {
-      flex: 1;
-      display: flex;
-      padding: 20px;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .project-header {
-      margin-bottom: 12px;
-    }
-
-    .project-title-enhanced {
-      font-size: 18px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .project-category-badge {
-      display: inline-block;
-      background: rgba(227, 168, 77, 0.15);
-      color: var(--orange-yellow-crayola, #e3a84d);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .project-description {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #aaa;
-      margin-bottom: 14px;
-    }
-
-    .project-tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 16px;
-    }
-
-    .tech-tag {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 500;
-      color: #ccc;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 10px;
-      margin-top: auto;
-    }
-
-    .project-link-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn-demo {
-      background: var(--orange-yellow-crayola, #e3a84d);
-      color: #1e1e1e;
-    }
-
-    .btn-demo:hover {
-      background: #d99a3d;
-    }
-
-    .btn-github {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .btn-github:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    /* ─── EmailJS Status ─── */
-    .form-status {
-      margin-top: 12px;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      display: none;
-    }
-
-    .form-status.success {
-      display: block;
-      background: rgba(50, 205, 50, 0.12);
-      border: 1px solid rgba(50, 205, 50, 0.3);
-      color: #5ce65c;
-    }
-
-    .form-status.error {
-      display: block;
-      background: rgba(255, 80, 80, 0.12);
-      border: 1px solid rgba(255, 80, 80, 0.3);
-      color: #ff6b6b;
-    }
-
-    /* ─── Achievements Grid ─── */
-    .achieve-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    .achieve-card {
-      position: relative;
-      background: var(--border-gradient-onyx);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 24px 20px 20px;
-      transition: all 0.3s ease;
-      z-index: 1;
-    }
-
-    .achieve-card::before {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      background: var(--bg-gradient-jet);
-      border-radius: inherit;
-      z-index: -1;
-    }
-
-    .achieve-card:hover {
-      border-color: rgba(227, 168, 77, 0.35);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .achieve-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-
-    .achieve-card h4 {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--white-2);
-      margin-bottom: 8px;
-    }
-
-    .achieve-card p {
-      font-size: 13px;
-      color: var(--light-gray);
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    /* ─── Experience bullet list ─── */
-    .exp-bullet-list {
-      list-style: none;
-      padding: 0;
-      margin-top: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .exp-bullet-list li {
-      position: relative;
-      padding-left: 16px;
-      font-size: var(--fs-6);
-      color: var(--light-gray);
-      font-weight: var(--fw-300);
-      line-height: 1.6;
-    }
-
-    .exp-bullet-list li::before {
-      content: "▸";
-      position: absolute;
-      left: 0;
-      color: var(--orange-yellow-crayola);
-      font-size: 11px;
-      top: 3px;
-    }
-
-    /* ─── Skill tag pills (for Education/Skills/Achievements pages) ─── */
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .skill-tag {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--light-gray);
-      font-size: 12px;
-      font-weight: 500;
-      padding: 5px 12px;
-      border-radius: 6px;
-    }
-
-    /* ─── Education badge ─── */
-    .edu-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .edu-badge {
-      background: rgba(227, 168, 77, 0.12);
-      color: var(--orange-yellow-crayola);
-      border: 1px solid rgba(227, 168, 77, 0.25);
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 6px;
-    }
-
-    /* ─── Responsive ─── */
-    @media (min-width: 580px) {
-      .achieve-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (min-width: 580px) {
-      .skills-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      }
-    }
-
-    @media (max-width: 580px) {
-      .project-links {
-        flex-direction: column;
-      }
-    }
-
-    /* ─── Footer ─── */
-    .footer {
-      text-align: center;
-      padding: 20px;
-      color: var(--light-gray-70);
-      font-size: 12px;
-      margin-bottom: 60px; /* space untuk bottom navbar mobile */
-    }
-
-    @media (min-width: 1024px) {
-      .footer {
-        margin-bottom: 20px;
-      }
-    }
-    
-    /* ─── Input with icon ─── */
-    .input-group {
-      position: relative;
-      width: 100%;
-    }
-
-    .input-icon {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--light-gray-70);
-      font-size: 16px;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-    }
-
-    .textarea-icon {
-      top: 18px;
-      transform: none;
-    }
-
-    .form-input.has-icon {
-      padding-left: 44px;
-    }
-
-    .input-wrapper {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    @media (min-width: 768px) {
-      .input-wrapper {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
   <main>
 
-    <!-- ══════════════════════════════════════
-         SIDEBAR
-    ══════════════════════════════════════ -->
+    <!-- SIDEBAR -->
     <aside class="sidebar" data-sidebar>
 
       <div class="sidebar-info">
@@ -664,7 +43,7 @@
         </div>
         <button class="info_more-btn" data-sidebar-btn>
           <span>Show Contacts</span>
-          <ion-icon name="chevron-down"></ion-icon>
+          <!-- <ion-icon name="chevron-down"></ion-icon> -->
         </button>
       </div>
 
@@ -677,7 +56,8 @@
             <div class="icon-box"><ion-icon name="mail-outline"></ion-icon></div>
             <div class="contact-info">
               <p class="contact-title">Email</p>
-              <a href="mailto:humairahramli30@gmail.com" class="contact-link">humairahramli30@gmail.com</a>            </div>
+              <a href="mailto:humairahramli30@gmail.com" class="contact-link">humairahramli30@gmail.com</a>
+            </div>
           </li>
           <li class="contact-item">
             <div class="icon-box"><ion-icon name="phone-portrait-outline"></ion-icon></div>
@@ -695,8 +75,8 @@
           </li>
         </ul>
 
-        <div style="display: flex; gap: 10px; padding: 0 16px;">
-          <a href="Resume_Humairah.pdf" target="_blank" class="cv-btn" style="flex: 1; justify-content: center;">
+        <div class="sidebar-cv-wrapper">
+          <a href="./assets/docs/Resume_Humairah.pdf" target="_blank" class="cv-btn">
             <ion-icon name="eye-outline"></ion-icon>
             Resume
           </a>
@@ -722,13 +102,10 @@
 
     </aside>
 
-
-    <!-- ══════════════════════════════════════
-         MAIN CONTENT
-    ══════════════════════════════════════ -->
+    <!-- MAIN CONTENT -->
     <div class="main-content">
 
-      <!-- ── NAVBAR (8 tabs) ── -->
+      <!-- NAVBAR -->
       <nav class="navbar">
         <ul class="navbar-list">
           <li class="navbar-item">
@@ -757,15 +134,12 @@
           </li>
         </ul>
       </nav>
-
-
-      <!-- ══ ABOUT ══ -->
+      
+      <!-- ABOUT -->
       <article class="about" id="about">
-
         <header>
           <h2 class="h2 article-title">About me</h2>
         </header>
-
         <section class="about-text">
           <p>
             I'm a fresh Computer Science graduate with hands-on professional experience
@@ -786,10 +160,10 @@
         <section class="service">
           <h3 class="h3 service-title">What I'm doing</h3>
           <ul class="service-list">
-
             <li class="service-item">
               <div class="service-icon-box">
-                <ion-icon name="code-slash-outline" style="font-size: 40px; color: var(--orange-yellow-crayola);"></ion-icon>              </div>
+                <ion-icon name="code-slash-outline"></ion-icon>
+              </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Frontend Development</h4>
                 <p class="service-item-text">
@@ -798,10 +172,9 @@
                 </p>
               </div>
             </li>
-
             <li class="service-item">
               <div class="service-icon-box">
-                <ion-icon name="globe-outline" style="font-size: 40px; color: var(--orange-yellow-crayola);"></ion-icon>
+                <ion-icon name="globe-outline"></ion-icon>
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Web Application Development</h4>
@@ -811,10 +184,9 @@
                 </p>
               </div>
             </li>
-
             <li class="service-item">
               <div class="service-icon-box">
-                <ion-icon name="phone-portrait-outline" style="font-size: 40px; color: var(--orange-yellow-crayola);"></ion-icon>
+                <ion-icon name="phone-portrait-outline"></ion-icon>
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Mobile Development</h4>
@@ -824,10 +196,9 @@
                 </p>
               </div>
             </li>
-
             <li class="service-item">
               <div class="service-icon-box">
-                <ion-icon name="people-outline" style="font-size: 40px; color: var(--orange-yellow-crayola);"></ion-icon>
+                <ion-icon name="people-outline"></ion-icon>
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Agile Collaboration</h4>
@@ -837,20 +208,15 @@
                 </p>
               </div>
             </li>
-
           </ul>
         </section>
-
       </article>
 
-
-      <!-- ══ EDUCATION ══ -->
+      <!-- EDUCATION -->
       <article class="education" id="education">
-
         <header>
           <h2 class="h2 article-title">Education</h2>
         </header>
-
         <section class="timeline">
           <div class="title-wrapper">
             <div class="icon-box">
@@ -858,7 +224,6 @@
             </div>
             <h3 class="h3">Academic Background</h3>
           </div>
-
           <ol class="timeline-list">
             <li class="timeline-item">
               <h4 class="h4 timeline-item-title">Universiti Teknologi Mara (UiTM) — Shah Alam</h4>
@@ -873,17 +238,13 @@
             </li>
           </ol>
         </section>
-
       </article>
 
-
-      <!-- ══ EXPERIENCE ══ -->
+      <!-- EXPERIENCE -->
       <article class="experience" id="experience">
-
         <header>
           <h2 class="h2 article-title">Experience</h2>
         </header>
-
         <section class="timeline">
           <div class="title-wrapper">
             <div class="icon-box">
@@ -891,9 +252,7 @@
             </div>
             <h3 class="h3">Work Experience</h3>
           </div>
-
           <ol class="timeline-list">
-
             <li class="timeline-item">
               <h4 class="h4 timeline-item-title">Junior Executive Application Developer — Map2u Sdn. Bhd.</h4>
               <span>January 2026 – Present · Contractual</span>
@@ -912,7 +271,6 @@
                   production issues.</li>
               </ul>
             </li>
-
             <li class="timeline-item">
               <h4 class="h4 timeline-item-title">Application Developer (Intern) — Map2u Sdn. Bhd.</h4>
               <span>September 2025 – December 2025 · Internship</span>
@@ -923,23 +281,18 @@
                 <li>Worked closely with senior developers in system testing and enhancement tasks.</li>
               </ul>
             </li>
-
           </ol>
         </section>
-
       </article>
 
-
-      <!-- ══ SKILLS ══ -->
+      <!-- SKILLS -->
       <article class="skills" id="skills">
-
         <header>
           <h2 class="h2 article-title">Skills</h2>
         </header>
-
-        <section class="skill" style="margin-top: 10px;">
-          <div class="content-card" style="padding: 25px;">
-
+        <section class="skill skills-section-wrapper">
+          <div class="content-card skills-card-inner">
+            <!-- Frontend -->
             <div class="skills-category">
               <div class="category-header">
                 <span class="category-icon">🎨</span>
@@ -955,8 +308,7 @@
                   <div class="skill-name">CSS</div>
                 </div>
                 <div class="skill-card">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                    alt="JavaScript">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
                   <div class="skill-name">JavaScript</div>
                 </div>
                 <div class="skill-card">
@@ -964,18 +316,17 @@
                   <div class="skill-name">Vue.js</div>
                 </div>
                 <div class="skill-card">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                    alt="Tailwind">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind">
                   <div class="skill-name">Tailwind CSS</div>
                 </div>
                 <div class="skill-card">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuetify/vuetify-original.svg"
-                    alt="Vuetify">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuetify/vuetify-original.svg" alt="Vuetify">
                   <div class="skill-name">Vuetify</div>
                 </div>
               </div>
             </div>
 
+            <!-- Mobile -->
             <div class="skills-category">
               <div class="category-header">
                 <span class="category-icon">📱</span>
@@ -983,8 +334,7 @@
               </div>
               <div class="skills-grid">
                 <div class="skill-card">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
-                    alt="Flutter">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter">
                   <div class="skill-name">Flutter</div>
                 </div>
                 <div class="skill-card">
@@ -993,7 +343,7 @@
                 </div>
               </div>
             </div>
-
+            <!-- Backend & Database -->
             <div class="skills-category">
               <div class="category-header">
                 <span class="category-icon">⚙️</span>
@@ -1005,13 +355,11 @@
                   <div class="skill-name">PHP</div>
                 </div>
                 <div class="skill-card">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg"
-                    alt="Laravel">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel">
                   <div class="skill-name">Laravel</div>
                 </div>
                 <div class="skill-card">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                    alt="Node.js">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
                   <div class="skill-name">Node.js</div>
                 </div>
                 <div class="skill-card">
@@ -1020,7 +368,7 @@
                 </div>
               </div>
             </div>
-
+            <!-- Tools & DevOps -->
             <div class="skills-category">
               <div class="category-header">
                 <span class="category-icon">🛠️</span>
@@ -1040,13 +388,12 @@
                   <div class="skill-name">Figma</div>
                 </div>
                 <div class="skill-card">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg"
-                    alt="Postman">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman">
                   <div class="skill-name">Postman</div>
                 </div>
               </div>
             </div>
-
+            <!-- Documentation & Analysis -->
             <div class="skills-category">
               <div class="category-header">
                 <span class="category-icon">📄</span>
@@ -1060,12 +407,9 @@
                 <span class="skill-tag">Agile / Scrum</span>
               </div>
             </div>
-
           </div>
         </section>
-
       </article>
-
 
       <!-- ══ ACHIEVEMENTS ══ -->
       <article class="achievements" id="achievements">
@@ -1074,7 +418,7 @@
           <h2 class="h2 article-title">Achievements</h2>
         </header>
 
-        <div class="achieve-grid" style="margin-top: 10px;">
+        <div class="achieve-grid achieve-grid-wrapper">
 
           <div class="achieve-card">
             <div class="achieve-icon">🏛️</div>
@@ -1095,13 +439,16 @@
             <h4>Dean's List Graduate</h4>
             <p>Graduated with Dean's List recognition and GPA 3.67/4.0 in Bachelor of Science (Hons) Netcentric
               Computing — demonstrating consistent academic performance throughout the programme.</p>
+            <a href="./assets/docs/academic-transcript.pdf" target="_blank" class="achieve-download-btn">
+              <ion-icon name="eye-outline"></ion-icon>
+              View Transcript
+            </a>
           </div>
 
           <div class="achieve-card">
-            <div class="achieve-icon">📄</div>
-            <h4>End-to-End SRS Authoring</h4>
-            <p>Authored comprehensive System Requirement Specifications (SRS) for a state-wide government digitalisation
-              platform, bridging business stakeholders and technical development teams.</p>
+            <div class="achieve-icon">📊</div>
+            <h4>Q1 2026 Performance Excellence</h4>
+            <p>Achieved an 89.57% overall performance score in Q1 2026, excelling in individual KPI execution (28.50/30) and collaborative competency benchmarks.</p>
           </div>
 
           <div class="achieve-card">
@@ -1115,18 +462,13 @@
 
       </article>
 
-
-      <!-- ══ PROJECTS ══ -->
+      <!-- PROJECTS -->
       <article class="projects" id="projects">
-
         <header>
           <h2 class="h2 article-title">Projects</h2>
         </header>
-
         <section class="projects-section">
-          <ul class="project-list"
-            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; align-items: stretch;">
-
+          <ul class="project-list project-list-enhanced">
             <li class="project-item active" data-filter-item data-category="vue">
               <div class="project-card-enhanced">
                 <div class="project-image-wrapper">
@@ -1152,7 +494,7 @@
                     <span class="tech-tag">RBAC</span>
                   </div>
                   <div class="project-links">
-                    <a href="#" class="project-link-btn btn-github" style="cursor: default; opacity: 0.5; pointer-events: none;">
+                    <a href="#" class="project-link-btn btn-github disabled">
                       <ion-icon name="time-outline"></ion-icon>
                       Live Demo Coming Soon
                     </a>
@@ -1160,7 +502,6 @@
                 </div>
               </div>
             </li>
-
             <li class="project-item active" data-filter-item data-category="flutter">
               <div class="project-card-enhanced">
                 <div class="project-image-wrapper">
@@ -1185,7 +526,7 @@
                     <span class="tech-tag">Agile</span>
                   </div>
                   <div class="project-links">
-                    <a href="#" class="project-link-btn btn-github" style="cursor: default; opacity: 0.5; pointer-events: none;">
+                    <a href="#" class="project-link-btn btn-github disabled">
                       <ion-icon name="time-outline"></ion-icon>
                       Live Demo Coming Soon
                     </a>
@@ -1194,21 +535,82 @@
               </div>
             </li>
 
+            <!-- Academic Project: RAD Document -->
+            <li class="project-item active" data-filter-item data-category="academic">
+              <div class="project-card-enhanced">
+                <div class="project-image-wrapper">
+                  <img src="./assets/images/rad-doc.png" alt="RAD Document">
+                  <div class="project-overlay"></div>
+                </div>
+                <div class="project-content">
+                  <div class="project-header">
+                    <h3 class="project-title-enhanced">RAD Document – Library Management System</h3>
+                    <span class="project-category-badge">✅ Academic (RAD)</span>
+                  </div>
+                  <p class="project-description">
+                    A complete Rapid Application Development (RAD) document including requirement analysis, user stories, prototyping, and iteration planning for a library management system. Demonstrates agile documentation and UML diagrams.
+                  </p>
+                  <div class="project-tech-stack">
+                    <span class="tech-tag">RAD</span>
+                    <span class="tech-tag">UML</span>
+                    <span class="tech-tag">User Stories</span>
+                    <span class="tech-tag">Prototyping</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="#" class="project-link-btn btn-demo" target="_blank">
+                      <ion-icon name="document-text-outline"></ion-icon>
+                      View RAD Doc
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- Academic Project: Movie Ticketing System -->
+            <li class="project-item active" data-filter-item data-category="academic">
+              <div class="project-card-enhanced">
+                <div class="project-image-wrapper">
+                  <img src="./assets/images/movie-ticketing.png" alt="Movie Ticketing System">
+                  <div class="project-overlay"></div>
+                </div>
+                <div class="project-content">
+                  <div class="project-header">
+                    <h3 class="project-title-enhanced">Movie Ticketing System</h3>
+                    <span class="project-category-badge">🎓 Capstone / Degree Project</span>
+                  </div>
+                  <p class="project-description">
+                    A full‑stack web application for booking movie tickets. Features user authentication, seat selection, payment simulation, and an admin panel to manage movies and showtimes. Built with Vue.js and Laravel.
+                  </p>
+                  <div class="project-tech-stack">
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">Laravel</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">REST API</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="#" class="project-link-btn btn-github" target="_blank">
+                      <ion-icon name="logo-github"></ion-icon>
+                      GitHub
+                    </a>
+                    <a href="#" class="project-link-btn btn-demo" target="_blank">
+                      <ion-icon name="play-outline"></ion-icon>
+                      Live Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
           </ul>
         </section>
-
       </article>
 
-
-      <!-- ══ CERTIFICATIONS ══ -->
+      <!-- CERTIFICATIONS -->
       <article class="certifications" id="certifications">
-
         <header>
           <h2 class="h2 article-title">Certifications</h2>
         </header>
-
-        <div class="cert-list" style="margin-top: 10px;">
-
+        <div class="cert-list cert-list-wrapper">
           <div class="cert-item" data-cert-img="./assets/certs/cisco-iot.png" data-cert-title="Introduction to IoT">
             <div class="cert-icon">🌐</div>
             <div class="cert-info">
@@ -1219,7 +621,6 @@
               <ion-icon name="eye-outline"></ion-icon>
             </button>
           </div>
-
           <div class="cert-item" data-cert-img="./assets/certs/google-cybersecurity.png" data-cert-title="Google Cybersecurity Professional Certificate">
             <div class="cert-icon">🛡️</div>
             <div class="cert-info">
@@ -1230,7 +631,6 @@
               <ion-icon name="eye-outline"></ion-icon>
             </button>
           </div>
-
           <div class="cert-item" data-cert-img="./assets/certs/aws-bootcamp.png" data-cert-title="AWS Bootcamp">
             <div class="cert-icon">☁️</div>
             <div class="cert-info">
@@ -1241,7 +641,6 @@
               <ion-icon name="eye-outline"></ion-icon>
             </button>
           </div>
-
           <div class="cert-item" data-cert-img="./assets/certs/girl-ctf.jpg" data-cert-title="Girl CTF">
             <div class="cert-icon">🚩</div>
             <div class="cert-info">
@@ -1252,9 +651,7 @@
               <ion-icon name="eye-outline"></ion-icon>
             </button>
           </div>
-
         </div>
-
       </article>
 
       <!-- Certificate Modal -->
@@ -1270,18 +667,14 @@
         </div>
       </div>
 
-      <!-- ══ CONTACT ══ -->
+      <!-- CONTACT -->
       <article class="contact" id="contact">
-
         <header>
-          <h2 class="h2 article-title">Contact</h2>
+          <h2 class="h2 article-title">Contact Me</h2>
         </header>
-
         <section class="contact-form">
           <h3 class="h3 form-title">Send a Message</h3>
-
           <form action="#" class="form" id="contact-form" data-form>
-
             <div class="input-wrapper">
               <div class="input-group">
                 <span class="input-icon"><ion-icon name="person-outline"></ion-icon></span>
@@ -1294,33 +687,25 @@
                   placeholder="Email address" required data-form-input>
               </div>
             </div>
-
-            <div class="input-group" style="margin-bottom: 16px;">
+            <div class="input-group input-group-textarea">
               <span class="input-icon textarea-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
               <textarea name="message" id="message" class="form-input has-icon"
                 placeholder="Your Message" required data-form-input></textarea>
             </div>
-
             <button class="form-btn" type="submit" id="submit-btn" disabled data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
-
-            <p class="form-status" id="form-success">✅ Message sent! I'll get back to you soon.</p>
-            <p class="form-status" id="form-error">❌ Something went wrong. Please try again or email me directly.</p>
-
           </form>
         </section>
-
       </article>
     </div>
      
-  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
-    <ion-icon name="arrow-up-outline"></ion-icon>
-  </button>
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+      <ion-icon name="arrow-up-outline"></ion-icon>
+    </button>
 
   </main>
-
 
   <!-- SCRIPTS -->
   <script src="./assets/js/script.js"></script>
@@ -1359,9 +744,9 @@
   </script>
 
   <!-- FOOTER -->
-<footer class="footer">
-  <p>© 2026 Humairah Ramli. All rights reserved.</p>
-</footer>
+  <footer class="footer">
+    <p>© 2026 Humairah Ramli. All rights reserved.</p>
+  </footer>
 
 </body>
 

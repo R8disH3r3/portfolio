@@ -1,0 +1,79 @@
+/*-----------------------------------*\
+  #CUSTOM PROPERTIES
+\*-----------------------------------*/
+
+:root {
+  /* colors — Figma dark purple palette */
+  --bg-gradient-onyx: linear-gradient(
+    135deg,
+    #251C31 0%,
+    #1A0B2E 100%
+  );
+  --bg-gradient-jet: linear-gradient(
+    145deg,
+    #2C1250 0%,
+    #11071F 100%
+  );
+  --bg-gradient-yellow-1: linear-gradient(
+    90deg,
+    #4F228D 0%,
+    #9857D3 100%
+  );
+  --bg-gradient-yellow-2: linear-gradient(
+    90deg,
+    #7127BA 0%,
+    #A362FF 100%
+  );
+  --border-gradient-onyx: linear-gradient(
+    145deg,
+    #693B93 0%,
+    rgba(105, 59, 147, 0) 100%
+  );
+  --text-gradient-yellow: linear-gradient(
+    120deg,
+    #FFFFFF 0%,
+    #A362FF 100%
+  );
+
+  /* solid colors — updated to match Figma */
+  --jet: #693B93;               /* borders, separators */
+  --onyx: #4F228D;              /* active elements */
+  --eerie-black-1: #2C1250;     /* card inner backgrounds */
+  --eerie-black-2: #251C31;     /* main content background */
+  --smoky-black: #11071F;       /* body background */
+  --white-1: #FFFFFF;           /* pure white */
+  --white-2: #FFFFFF;           /* headings, important text */
+  --orange-yellow-crayola: #A362FF;   /* main accent (purple) */
+  --vegas-gold: #9857D3;               /* secondary purple */
+  --light-gray: #CCD6F6;               /* body text */
+  --light-gray-70: rgba(204, 214, 246, 0.7);
+  --bittersweet-shimmer: #1877F2;      /* blue for error states */
+
+  /* typography — keep as is */
+  --ff-poppins: 'Poppins', sans-serif;
+  --fs-1: 24px;
+  --fs-2: 18px;
+  --fs-3: 17px;
+  --fs-4: 16px;
+  --fs-5: 15px;
+  --fs-6: 14px;
+  --fs-7: 13px;
+  --fs-8: 11px;
+
+  /* font weight */
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+
+  /* shadows — optional: keep existing or make darker */
+  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.4);
+  --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.4);
+  --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.4);
+  --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.3);
+  --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.4);
+
+  /* transitions — keep as is */
+  --transition-1: 0.25s ease;
+  --transition-2: 0.5s ease-in-out;
+}

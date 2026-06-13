@@ -1,0 +1,206 @@
+/*-----------------------------------*\
+  #SIDEBAR
+\*-----------------------------------*/
+
+.sidebar {
+  margin-bottom: 15px;
+  max-height: 112px;
+  overflow: hidden;
+  transition: var(--transition-2);
+}
+
+.sidebar.active { max-height: 405px; }
+
+.sidebar-info {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+/* CV Button Wrapper */
+.sidebar-cv-wrapper {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px;
+  margin-top: 20px;
+}
+
+.sidebar-cv-wrapper .cv-btn {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Resume button */
+.sidebar .cv-btn {
+  background: linear-gradient(135deg, rgba(79, 34, 141, 0.5), rgba(163, 98, 255, 0.4)) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(163, 98, 255, 0.5) !important;
+  border-radius: 40px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .cv-btn:hover {
+  background: linear-gradient(135deg, rgba(113, 43, 186, 0.7), rgba(163, 98, 255, 0.6)) !important;
+  border-color: rgba(163, 98, 255, 0.8) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(163, 98, 255, 0.3);
+}
+
+.avatar-box {
+  background: var(--bg-gradient-onyx);
+  border-radius: 20px;
+}
+
+.info-content .name {
+  color: var(--white-2);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-500);
+  letter-spacing: -0.25px;
+  margin-bottom: 10px;
+}
+
+.info-content .title {
+  color: var(--white-1);
+  background: var(--onyx);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-300);
+  width: max-content;
+  padding: 3px 12px;
+  border-radius: 8px;
+}
+
+.info_more-btn {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  border-radius: 0 15px;
+  font-size: 13px;
+  color: var(--orange-yellow-crayola);
+  background: var(--border-gradient-onyx);
+  padding: 10px;
+  box-shadow: var(--shadow-2);
+  transition: var(--transition-1);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.info_more-btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--bg-gradient-jet);
+  transition: var(--transition-1);
+  z-index: -1;
+}
+
+.info_more-btn:hover {
+  color: #FFFFFF !important;          
+  background: linear-gradient(135deg, rgba(113, 43, 186, 0.8), rgba(163, 98, 255, 0.7)) !important;
+  border-color: rgba(163, 98, 255, 0.8) !important;
+  box-shadow: 0 8px 20px rgba(163, 98, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.info_more-btn:hover span,
+.info_more-btn:hover ion-icon {
+  color: #FFFFFF !important;
+}
+
+
+.info_more-btn:focus { background: var(--bg-gradient-yellow-1); }
+
+.info_more-btn:hover::before,
+.info_more-btn:focus::before { background: var(--bg-gradient-yellow-2); }
+
+.info_more-btn span { display: none; }
+
+.sidebar-info_more {
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-2);
+}
+
+.sidebar.active .sidebar-info_more {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* "Application Developer" title */
+.sidebar .info-content .title {
+  background: rgba(163, 98, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(163, 98, 255, 0.4);
+  border-radius: 10px;
+  padding: 6px 18px;
+  display: inline-block;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: var(--fs-8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* contacts */
+.contacts-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.contact-item {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-info {
+  max-width: calc(100% - 50px);
+  width: calc(100% - 50px);
+  overflow: hidden;
+}
+
+.contact-title {
+  color: var(--light-gray-70);
+  font-size: var(--fs-8);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.contact-info :is(.contact-link, time, address) {
+  color: var(--white-2);
+  font-size: var(--fs-7);
+  word-break: break-all;
+  font-size: 12px;
+  white-space: normal !important;
+}
+
+.contact-info address { font-style: normal; }
+
+/* social */
+.social-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 4px;
+  padding-left: 7px;
+}
+
+.social-item .social-link {
+  color: var(--light-gray-70);
+  font-size: 18px;
+}
+
+.social-item .social-link:hover { color: var(--light-gray); }
