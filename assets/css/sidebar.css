@@ -54,6 +54,17 @@
   box-shadow: 0 6px 20px rgba(163, 98, 255, 0.3);
 }
 
+/* sidebar name */
+.sidebar .info-content .name {
+  font-size: 20px;
+}
+
+/* Tag APPLICATION DEVELOPER" */
+.sidebar .info-content .title {
+  font-size: 10px;   
+  padding: 4px 12px; 
+}
+
 .avatar-box {
   background: var(--bg-gradient-onyx);
   border-radius: 20px;
