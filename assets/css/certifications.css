@@ -175,3 +175,25 @@
 .cert-list-wrapper {
   margin-top: 10px;
 }
+
+/* In Progress button with icon */
+.cert-progress-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(163, 98, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(163, 98, 255, 0.3);
+  border-radius: 40px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #A362FF;
+  cursor: default;
+  transition: 0.2s;
+}
+
+.cert-progress-btn ion-icon {
+  font-size: 14px;
+  color: #A362FF;
+}

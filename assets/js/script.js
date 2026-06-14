@@ -5,12 +5,12 @@
 'use strict';
 
 // Force page to start at top on reload (overrides browser's scroll restoration)
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   window.scrollTo(0, 0);
 });
 
 // Also handle when page is restored from back/forward cache (bfcache)
-window.addEventListener('pageshow', function(event) {
+window.addEventListener('pageshow', function (event) {
   if (event.persisted) {
     window.scrollTo(0, 0);
   }
@@ -73,7 +73,7 @@ if (certModalOverlay) {
         e.stopPropagation();
         const imgSrc = item.getAttribute('data-cert-img');
         const title = item.getAttribute('data-cert-title');
-        
+
         certModalImg.src = imgSrc;
         certModalTitle.textContent = title;
         certModalOverlay.classList.add('active');
@@ -186,7 +186,7 @@ navbarLinks.forEach(link => {
     e.preventDefault();
     const targetId = this.getAttribute('href');
     const targetSection = document.querySelector(targetId);
-    
+
     if (targetSection) {
       targetSection.scrollIntoView({
         behavior: 'smooth',
@@ -214,3 +214,48 @@ revealElements.forEach(el => {
   observer.observe(el);
 });
 
+// =============================================
+// Video Modal for Project Demos
+// =============================================
+const videoModalOverlay = document.getElementById('videoModal');
+const videoClose = document.querySelector('.video-modal-close');
+const demoButtons = document.querySelectorAll('[data-video]');
+
+if (videoModalOverlay) {
+  if (videoModalOverlay.parentElement !== document.body) {
+    document.body.appendChild(videoModalOverlay);
+  }
+  // Open modal when clicking demo buttons
+  demoButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const videoSrc = btn.getAttribute('data-video');
+      const videoElem = videoModalOverlay.querySelector('video');
+      if (videoSrc) {
+        videoElem.src = videoSrc;
+        videoModalOverlay.style.display = 'flex';
+        videoElem.play();
+      }
+    });
+  });
+
+  // Close modal with close button
+  if (videoClose) {
+    videoClose.addEventListener('click', () => {
+      videoModalOverlay.style.display = 'none';
+      const videoElem = videoModalOverlay.querySelector('video');
+      videoElem.pause();
+      videoElem.src = '';
+    });
+  }
+
+  // Close modal when clicking outside the modal content
+  videoModalOverlay.addEventListener('click', (e) => {
+    if (e.target === videoModalOverlay) {
+      videoModalOverlay.style.display = 'none';
+      const videoElem = videoModalOverlay.querySelector('video');
+      videoElem.pause();
+      videoElem.src = '';
+    }
+  });
+}
