@@ -177,6 +177,46 @@ if (contactForm && submitBtn) {
   });
 }
 
+// =============================================
+// Mobile Sidebar Toggle (with safety checks)
+// =============================================
+const menuToggle = document.getElementById('menuToggle');
+const navbar = document.getElementById('navbar');
+const overlay = document.getElementById('sidebarOverlay');
+
+// Only proceed if all elements exist
+if (menuToggle && navbar && overlay) {
+  function toggleSidebar() {
+    menuToggle.classList.toggle('active');
+    navbar.classList.toggle('open');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = navbar.classList.contains('open') ? 'hidden' : '';
+  }
+
+  // Open/close on hamburger click
+  menuToggle.addEventListener('click', toggleSidebar);
+
+  // Close on overlay click
+  overlay.addEventListener('click', toggleSidebar);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navbar.classList.contains('open')) {
+      toggleSidebar();
+    }
+  });
+
+  // Close sidebar when a link is clicked
+  document.querySelectorAll('.navbar-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navbar.classList.contains('open')) {
+        toggleSidebar();
+      }
+    });
+  });
+} else {
+  console.warn('Mobile sidebar elements missing — check your HTML IDs');
+}
 
 // =============================================
 // SMOOTH SCROLL for Navbar Links

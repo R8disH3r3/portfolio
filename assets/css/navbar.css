@@ -102,3 +102,81 @@ article#about {
     font-size: 13px;
   }
 }
+
+/*-----------------------------------*\
+  #HAMBURGER MENU BUTTON
+\*-----------------------------------*/
+
+.menu-toggle {
+  display: none; /* hidden by default */
+  position: fixed;
+  top: 30px;
+  left: 16px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  
+  /* ── More translucent gradient ── */
+  background: linear-gradient(135deg, rgba(79, 34, 141, 0.35), rgba(163, 98, 255, 0.25));
+  
+  /* ── Stronger blur for glass effect ── */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  /* ── Subtle border ── */
+  border: 1px solid rgba(163, 98, 255, 0.25);
+  
+  /* ── Soft shadow ── */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  
+  cursor: pointer;
+  padding: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+  background: linear-gradient(135deg, rgba(79, 34, 141, 0.5), rgba(163, 98, 255, 0.35));
+  box-shadow: 0 4px 28px rgba(163, 98, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* ── Hamburger lines ── */
+.hamburger-line {
+  display: block;
+  width: 18px;
+  height: 2.3px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+  flex-shrink: 0;
+}
+
+/* ── Hamburger animation when active ── */
+.menu-toggle.active .hamburger-line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+  width: 22px;
+}
+
+.menu-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.menu-toggle.active .hamburger-line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+  width: 22px;
+}
+
+/* ── Show on mobile ── */
+@media (max-width: 660px) {
+  .menu-toggle {
+    display: flex !important;
+  }
+}

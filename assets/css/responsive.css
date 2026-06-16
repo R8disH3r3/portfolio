@@ -86,7 +86,6 @@
   }
 
   /* Navbar at 580px */
-  .navbar { border-radius: 20px 20px 0 0; }
 
   .navbar-list {
     justify-content: center;
@@ -287,7 +286,7 @@
  * responsive larger than 1024px screen
  * FIXED: Switch to flex layout so sidebar + content are side-by-side
  */
-@media (min-width: 1024px) {
+@media (min-width: 1128px) {
   :root {
     --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.125);
     --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.125);
@@ -448,5 +447,217 @@
   .project-links {
     flex-direction: column;
   }
+  .sidebar.active {
+    max-height: 600px !important;
+  }
 }
 
+/*-----------------------------------*\
+  #MOBILE SIDEBAR (≤ 660px)
+\*-----------------------------------*/
+
+@media (max-width: 660px) {
+  /* ── Show hamburger button ── */
+  .menu-toggle {
+    display: flex !important;
+  }
+
+  /* ── Navbar becomes off-canvas sidebar ── */
+  .navbar {
+    position: fixed !important;
+    top: 100px !important;
+    left: -180px !important;
+    right: auto !important;
+    width: 170px !important;
+    height: 70vh !important;
+    max-height: 100vh !important;
+    
+    /* ── Translucent glass background ── */
+     background: linear-gradient(180deg, rgba(79, 34, 141, 0.35), rgba(163, 98, 255, 0.2)) !important;
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    
+    border-radius: 0 20px 20px 0 !important;
+    border-bottom: none !important;
+    border-right: 1px solid rgba(163, 98, 255, 0.15) !important;
+    box-shadow: 4px 0 60px rgba(0, 0, 0, 0.3) !important;
+    padding: 30px 20px 30px !important;
+    z-index: 150 !important;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .navbar.open {
+    left: 0 !important;
+  }
+
+  /* ── Navbar list: vertical layout ── */
+  .navbar-list {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: 1px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .navbar-item {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Links */
+  .navbar-link {
+    display: block !important;
+    padding: 12px 16px !important;
+    font-size: 12px !important;
+    border-radius: 0 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    
+    /* ── NO background, NO border ── */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    
+    /* text color */
+    color: rgba(255, 255, 255, 0.7) !important;
+    
+    transition: all 0.2s ease !important;
+  }
+
+  .navbar-link:hover {
+    background: transparent !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    padding-left: 20px !important; /* subtle slide effect on hover */
+  }
+
+  .navbar-link.active {
+    background: transparent !important;
+    color: #FFFFFF !important;
+    font-weight: 500 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .navbar-link.active::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 4px !important;
+    left: 16px !important;
+    transform: none !important;
+    width: 24px !important;
+    height: 2px !important;
+    background: linear-gradient(90deg, #A362FF, #FFFFFF) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 12px rgba(163, 98, 255, 0.3) !important;
+  }
+
+  /* ── Overlay ── */
+  .sidebar-overlay {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    z-index: 140 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    pointer-events: none !important;
+  }
+
+  .sidebar-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  main {
+    padding-top: 65px !important;
+  }
+
+  .sidebar {
+    top: 75px !important;
+  }
+
+  body {
+    overflow-x: hidden !important;
+  }
+}
+
+/*-----------------------------------*\
+  #SIDEBAR TOGGLE ICON (≤ 579px)
+\*-----------------------------------*/
+
+@media (max-width: 579px) {
+  /* ── Hide the text "Show Contacts" ── */
+  .info_more-btn span {
+    display: none !important;
+  }
+
+  /* ── Show only the icon ── */
+  .info_more-btn ion-icon {
+    display: block !important;
+    font-size: 20px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  /* ── Rotate icon when expanded (contacts visible) ── */
+  .sidebar.active .info_more-btn ion-icon {
+    transform: rotate(180deg) !important;
+  }
+
+  /* ── Style the button as a circular toggle ── */
+  .info_more-btn {
+    top: -20px !important;
+    right: -10px !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(163, 98, 255, 0.2) !important;
+    border: 1px solid rgba(163, 98, 255, 0.3) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .info_more-btn:hover {
+    background: rgba(163, 98, 255, 0.35) !important;
+    border-color: rgba(163, 98, 255, 0.6) !important;
+  }
+
+  .info_more-btn:hover ion-icon {
+    color: #FFFFFF !important;
+  }
+  
+  .sidebar.active {
+    max-height: 600px !important;
+  }
+
+  .project-links {
+    flex-direction: column;
+  }
+
+  .project-list-enhanced,
+  .project-list.project-list-enhanced {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}

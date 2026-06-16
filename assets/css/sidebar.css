@@ -4,7 +4,7 @@
 
 .sidebar {
   margin-bottom: 15px;
-  max-height: 112px;
+  max-height: 140px;
   overflow: hidden;
   transition: var(--transition-2);
 }
@@ -90,7 +90,7 @@
 
 .info_more-btn {
   position: absolute;
-  top: -15px;
+  top: -24px;
   right: -15px;
   border-radius: 0 15px;
   font-size: 13px;
@@ -98,7 +98,6 @@
   background: var(--border-gradient-onyx);
   padding: 10px;
   box-shadow: var(--shadow-2);
-  transition: var(--transition-1);
   z-index: 1;
   transition: all 0.3s ease;
 }
@@ -114,7 +113,7 @@
 }
 
 .info_more-btn:hover {
-  color: #FFFFFF !important;          
+  color: #FFFFFF !important;
   background: linear-gradient(135deg, rgba(113, 43, 186, 0.8), rgba(163, 98, 255, 0.7)) !important;
   border-color: rgba(163, 98, 255, 0.8) !important;
   box-shadow: 0 8px 20px rgba(163, 98, 255, 0.4);
@@ -126,13 +125,13 @@
   color: #FFFFFF !important;
 }
 
-
-.info_more-btn:focus { background: var(--bg-gradient-yellow-1); }
-
-.info_more-btn:hover::before,
-.info_more-btn:focus::before { background: var(--bg-gradient-yellow-2); }
+/* ── REMOVE or COMMENT OUT these focus styles ── */
+/* .info_more-btn:focus { background: var(--bg-gradient-yellow-1); } */
+/* .info_more-btn:hover::before, */
+/* .info_more-btn:focus::before { background: var(--bg-gradient-yellow-2); } */
 
 .info_more-btn span { display: none; }
+
 
 .sidebar-info_more {
   opacity: 0;

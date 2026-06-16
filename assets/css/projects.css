@@ -321,12 +321,12 @@
   gap: 25px !important;
 }
 
-/* Responsive: 1 column on mobile */
+/* Responsive: 1 column on mobile
 @media (max-width: 768px) {
   .project-list-enhanced {
     grid-template-columns: 1fr;
   }
-}
+} */
 
 @media (min-width: 1024px) {
   .project-list-enhanced,
