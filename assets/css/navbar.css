@@ -110,7 +110,7 @@ article#about {
 .menu-toggle {
   display: none; /* hidden by default */
   position: fixed;
-  top: 30px;
+  top: 15px;
   left: 16px;
   z-index: 200;
   width: 40px;
