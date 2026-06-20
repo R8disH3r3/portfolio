@@ -161,16 +161,15 @@ if (contactForm && submitBtn) {
     emailjs.sendForm('service_7vvykd3', 'template_ro0agcz', this)
       .then(() => {
         showToast('✅ Message sent! I\'ll get back to you soon.', false);
+
         contactForm.reset();
         submitBtn.disabled = true;   // keep disabled until new input
         submitBtn.querySelector('span').textContent = 'Send Message';
-        // Re-run validity check (optional)
-        const allFilled = Array.from(formInputs).every(input => input.value.trim() !== '');
-        submitBtn.disabled = !allFilled;
       })
       .catch((error) => {
         console.error('EmailJS error:', error);
         showToast('❌ Something went wrong. Please try again or email me directly.', true);
+        
         submitBtn.disabled = false;
         submitBtn.querySelector('span').textContent = 'Send Message';
       });

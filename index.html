@@ -5,7 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Humairah Ramli, a Junior Application Developer specializing in Vue.js, Flutter, and enterprise system development.">
   <title>Humairah Portfolio</title>
+
+  <meta property="og:title" content="Humairah Ramli | Application Developer Portfolio">
+  <meta property="og:description" content="Explore frontend and mobile development projects built for enterprise and government platforms.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://portfolio-humairah.vercel.app/assets/images/my-avatar.png">
 
   <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
   
@@ -505,12 +511,14 @@
         <header>
           <h2 class="h2 article-title">Projects</h2>
         </header>
+        
         <section class="projects-section">
           <ul class="project-list project-list-enhanced">
+            
             <li class="project-item active" data-filter-item data-category="vue">
               <div class="project-card-enhanced">
                 <div class="project-image-wrapper">
-                  <img src="./assets/images/project-kdm.png" alt="Kampung Digital Melaka 2.0">
+                  <img src="./assets/images/project-kdm.png" alt="Kampung Digital Melaka 2.0 system interface preview">
                   <div class="project-overlay"></div>
                 </div>
                 <div class="project-content">
@@ -532,18 +540,19 @@
                     <span class="tech-tag">RBAC</span>
                   </div>
                   <div class="project-links">
-                    <a href="#" class="project-link-btn btn-github disabled">
+                    <button class="project-link-btn btn-github" disabled aria-label="Live demo for Kampung Digital Melaka coming soon">
                       <ion-icon name="time-outline"></ion-icon>
                       Live Demo Coming Soon
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
             </li>
+
             <li class="project-item active" data-filter-item data-category="flutter">
               <div class="project-card-enhanced">
                 <div class="project-image-wrapper">
-                  <img src="./assets/images/project-span.png" alt="SPAN Mobile Application">
+                  <img src="./assets/images/project-span.png" alt="SPAN Mobile Application interface mockup">
                   <div class="project-overlay"></div>
                 </div>
                 <div class="project-content">
@@ -564,20 +573,19 @@
                     <span class="tech-tag">Agile</span>
                   </div>
                   <div class="project-links">
-                    <a href="#" class="project-link-btn btn-github disabled">
+                    <button class="project-link-btn btn-github" disabled aria-label="Live demo for SPAN Mobile Application coming soon">
                       <ion-icon name="time-outline"></ion-icon>
                       Live Demo Coming Soon
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
             </li>
 
-            <!-- Academic Project: RAD Document -->
             <li class="project-item active" data-filter-item data-category="academic">
               <div class="project-card-enhanced">
                 <div class="project-image-wrapper">
-                  <img src="./assets/images/rad-doc.png" alt="RAD Document">
+                  <img src="./assets/images/rad-doc.png" alt="CampusCruise RAD Document overview">
                   <div class="project-overlay"></div>
                 </div>
                 <div class="project-content">
@@ -587,19 +595,19 @@
                   </div>
                   <p class="project-description">
                     <p class="project-description">
-                      Led the team as Project Manager to develop CampusCruise, an e-hailing system for the university campus.
-                      Coordinated team tasks, stakeholder communication, and documentation quality throughout the project lifecycle.
-                      The team produced a comprehensive Rapid Application Development (RAD) document, system prototypes, and UI designs that achieved the highest mark in the cohort.
+                      Served as Project Manager and Group Leader for a university e-hailing system proposal. 
+                      Led the compilation of a comprehensive RAD document and interactive Figma prototypes, 
+                      achieving the highest mark in the cohort.
                     </p>
-                    <div class="project-tech-stack">
-                      <span class="tech-tag">Project Management</span>
-                      <span class="tech-tag">Requirements Gathering</span>
-                      <span class="tech-tag">RAD</span>
-                      <span class="tech-tag">Figma</span>
-                      <span class="tech-tag">Prototyping</span>
-                    </div>
+                  <div class="project-tech-stack">
+                    <span class="tech-tag">Requirements Gathering</span>
+                    <span class="tech-tag">System Documentation</span>
+                    <span class="tech-tag">RAD Framework</span>
+                    <span class="tech-tag">Figma</span>
+                    <span class="tech-tag">Prototyping</span>
+                  </div>
                   <div class="project-links">
-                    <a href="./assets/docs/InifinityWeb_Rad.pdf" class="project-link-btn btn-demo" target="_blank">
+                    <a href="./assets/docs/InifinityWeb_Rad.pdf" class="project-link-btn btn-demo" target="_blank" aria-label="View RAD Document for CampusCruise">
                       <ion-icon name="document-text-outline"></ion-icon>
                       View RAD
                     </a>
@@ -608,11 +616,10 @@
               </div>
             </li>
 
-            <!-- Academic Project: Movie Ticketing System -->
             <li class="project-item active" data-filter-item data-category="academic">
               <div class="project-card-enhanced">
                 <div class="project-image-wrapper">
-                  <img src="./assets/images/movie-ticketing.png" alt="Movie Ticketing System">
+                  <img src="./assets/images/movie-ticketing.png" alt="Movie Ticketing System user interface mockup">
                   <div class="project-overlay"></div>
                 </div>
                 <div class="project-content">
@@ -621,9 +628,11 @@
                     <span class="project-category-badge">🎓 Degree Project</span>
                   </div>
                   <p class="project-description">
-                    Led the frontend development for a group project: a movie ticketing application. 
-                    Adhering to strict assignment requirements, the team built the entire booking interface including seat selection and showtime management from the ground up without external templates. 
-                    This project challenged me to strengthen my grasp of core JavaScript and CSS fundamentals while coordinating team contributions to ensure consistent code quality.
+                    <p class="project-description">
+                      Took ownership of the frontend execution for a collaborative movie ticketing application built from the ground up. 
+                      Developed the entire responsive booking layout, interactive seat selection system, 
+                      and showtime management module using core JavaScript and CSS.
+                    </p>
                   </p>
                   <div class="project-tech-stack">
                     <span class="tech-tag">JavaScript</span>
@@ -633,11 +642,11 @@
                     <span class="tech-tag">REST API</span>
                   </div>
                   <div class="project-links">
-                    <a href="https://github.com/R8disH3r3/Frontend-Movie-Ticketing-System" class="project-link-btn btn-github" target="_blank">
+                    <a href="https://github.com/R8disH3r3/Frontend-Movie-Ticketing-System" class="project-link-btn btn-github" target="_blank" aria-label="View GitHub Repository for Movie Ticketing System">
                       <ion-icon name="logo-github"></ion-icon>
                       GitHub
                     </a>
-                    <a href="https://flixtix-movie-ticketing-system.vercel.app/" class="project-link-btn btn-demo" target="_blank">
+                    <a href="https://flixtix-movie-ticketing-system.vercel.app/" class="project-link-btn btn-demo" target="_blank" aria-label="View Live Demo of Movie Ticketing System">
                       <ion-icon name="play-outline"></ion-icon>
                       Live Demo
                     </a>
@@ -646,11 +655,10 @@
               </div>
             </li>
 
-            <!-- AR Mobile App Project -->
             <li class="project-item active" data-filter-item data-category="ar">
               <div class="project-card-enhanced">
                 <div class="project-image-wrapper">
-                  <img src="./assets/images/ar-mobile-app.png" alt="AR Mobile App">
+                  <img src="./assets/images/ar-mobile-app.png" alt="AR Mobile Application running on Android">
                   <div class="project-overlay"></div>
                 </div>
                 <div class="project-content">
@@ -672,11 +680,11 @@
                     <span class="tech-tag">ARCore</span>
                   </div>
                   <div class="project-links">
-                    <a href="https://github.com/R8disH3r3/Unity-ar-mobile-app/tree/main" class="project-link-btn btn-github" target="_blank">
+                    <a href="https://github.com/R8disH3r3/Unity-ar-mobile-app/tree/main" class="project-link-btn btn-github" target="_blank" aria-label="View GitHub Repository for AR Mobile App">
                       <ion-icon name="logo-github"></ion-icon>
                       GitHub
                     </a>
-                    <a href="#" class="project-link-btn btn-demo" data-video="./assets/videos/ar-demo.mp4" target="_blank">
+                    <a href="#" class="project-link-btn btn-demo" data-video="./assets/videos/ar-demo.mp4" target="_blank" aria-label="Watch Live Demo video for AR Mobile App">
                       <ion-icon name="play-circle-outline"></ion-icon>
                       Live Demo
                     </a>
@@ -685,11 +693,10 @@
               </div>
             </li>
 
-            <!-- Degree Project: UI/UX Figma Design -->
             <li class="project-item active" data-filter-item data-category="academic">
               <div class="project-card-enhanced">
                 <div class="project-image-wrapper">
-                  <img src="./assets/images/uiux-figma.png" alt="UI/UX Figma Design">
+                  <img src="./assets/images/uiux-figma.png" alt="Figma high-fidelity prototype user flows">
                   <div class="project-overlay"></div>
                 </div>
                 <div class="project-content">
@@ -710,7 +717,7 @@
                     <span class="tech-tag">User Experience (UX)</span>
                   </div>
                   <div class="project-links">
-                    <a href="https://www.figma.com/design/fMUrxgiEppPQuFZw1fiCcu/E-HAILING-WEB-APPLICATION?m=auto&t=yfvjZOj0SK46WWc7-1" class="project-link-btn btn-demo" target="_blank">
+                    <a href="https://www.figma.com/design/fMUrxgiEppPQuFZw1fiCcu/E-HAILING-WEB-APPLICATION?m=auto&t=yfvjZOj0SK46WWc7-1" class="project-link-btn btn-demo" target="_blank" aria-label="View Figma Design Prototype for CampusCruise">
                       <ion-icon name="brush-outline"></ion-icon>
                       View Figma
                     </a>
@@ -721,10 +728,9 @@
           </ul>
         </section>
 
-        <!-- Video Modal -->
         <div id="videoModal" class="video-modal-overlay">
           <div class="video-modal">
-            <button class="video-modal-close">&times;</button>
+            <button class="video-modal-close" aria-label="Close video modal">&times;</button>
             <video controls class="video-player">
               <source src="./assets/videos/ar-demo.m4v" type="video/mp4">
               Your browser does not support the video tag.
@@ -812,26 +818,33 @@
         <header>
           <h2 class="h2 article-title">Contact Me</h2>
         </header>
+        
         <section class="contact-form">
           <h3 class="h3 form-title">Send a Message</h3>
-          <form action="#" class="form" id="contact-form" data-form>
+          
+          <form class="form" id="contact-form" data-form>
             <div class="input-wrapper">
+              
               <div class="input-group">
                 <span class="input-icon"><ion-icon name="person-outline"></ion-icon></span>
                 <input type="text" name="from_name" id="from_name" class="form-input has-icon"
-                  placeholder="Full name" required data-form-input>
+                  placeholder="Full name" required data-form-input aria-label="Full Name">
               </div>
+              
               <div class="input-group">
                 <span class="input-icon"><ion-icon name="mail-outline"></ion-icon></span>
                 <input type="email" name="from_email" id="from_email" class="form-input has-icon"
-                  placeholder="Email address" required data-form-input>
+                  placeholder="Email address" required data-form-input aria-label="Email Address">
               </div>
+              
             </div>
+            
             <div class="input-group input-group-textarea">
               <span class="input-icon textarea-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
               <textarea name="message" id="message" class="form-input has-icon"
-                placeholder="Your Message" required data-form-input></textarea>
+                placeholder="Your Message" required data-form-input aria-label="Message Content"></textarea>
             </div>
+            
             <button class="form-btn" type="submit" id="submit-btn" disabled data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
