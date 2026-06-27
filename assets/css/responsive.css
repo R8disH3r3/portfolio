@@ -371,7 +371,7 @@
 
   /* CV Buttons */
   .sidebar-cv-wrapper {
-    flex-direction: column;
+    flex-direction: row;           
     gap: 6px;
     padding: 0 4px;
     margin-top: 10px;
@@ -379,11 +379,12 @@
 
   .sidebar-cv-wrapper .cv-btn {
     font-size: 11px !important;
-    padding: 6px 12px !important;
+    padding: 6px 8px !important;   
     border-radius: 30px !important;
-    flex: none;
-    width: 100%;
+    flex: 1;                       
+    width: auto;                   
     text-align: center;
+    white-space: nowrap;          
   }
 
   .info_more-btn {
