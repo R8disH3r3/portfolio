@@ -294,7 +294,8 @@
   }
 
   /* ── FIX: Remove width limits, use flex layout ── */
-  .sidebar, article {
+  .sidebar,
+  article {
     width: auto;
     box-shadow: var(--shadow-5);
   }
@@ -311,69 +312,155 @@
     max-width: 1200px;
     margin-inline: auto;
     margin-bottom: 60px;
-    display: flex;              /* ← Flex layout starts at 1024px instead of 1250px */
+    display: flex;
     justify-content: center;
-    align-items: flex-start;    /* ← Don't stretch sidebar */
-    gap: 25px;
+    align-items: flex-start;
+    gap: 20px;
   }
 
   .main-content {
     position: relative;
-    flex: 1;                    /* ← Take remaining space */
-    min-width: 0;               /* ← Allow flex to shrink */
+    flex: 1;
+    min-width: 0;
     margin: 0;
   }
 
+  /* ─── SIDEBAR – SMALLER ─── */
   .sidebar {
     position: sticky;
     top: 60px;
     max-height: max-content;
-    height: fit-content;        /* ← Only as tall as content */
+    height: fit-content;
     margin-bottom: 0;
-    padding-top: 20px;
+    padding: 16px 14px 18px !important;
     z-index: 1;
-    min-width: 280px;
-    max-width: 320px;           /* ← Limit sidebar width */
-    flex-shrink: 0;             /* ← Don't let sidebar shrink */
+    min-width: 200px;
+    max-width: 230px;
+    flex-shrink: 0;
   }
 
-  .sidebar-info { flex-direction: column; }
-  .avatar-box img { width: 120px; }
+  .sidebar-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .avatar-box img {
+    width: 100px !important;
+  }
+
+  .avatar-box {
+    border-radius: 16px;
+    overflow: hidden;
+  }
 
   .info-content .name {
+    font-size: 16px !important;
+    letter-spacing: -0.15px;
+    margin-bottom: 4px;
     white-space: nowrap;
     text-align: center;
   }
 
-  .info-content .title { margin: auto; }
-  .info_more-btn { display: none; }
+  .info-content .title {
+    font-size: 8px !important;
+    padding: 3px 10px !important;
+    letter-spacing: 0.3px;
+    border-radius: 6px;
+    margin: auto;
+  }
+
+  /* CV Buttons */
+  .sidebar-cv-wrapper {
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 4px;
+    margin-top: 10px;
+  }
+
+  .sidebar-cv-wrapper .cv-btn {
+    font-size: 11px !important;
+    padding: 6px 12px !important;
+    border-radius: 30px !important;
+    flex: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .info_more-btn {
+    display: none;
+  }
 
   .sidebar-info_more {
     opacity: 1;
     visibility: visible;
+    margin-top: 6px;
   }
 
-  .contacts-list { grid-template-columns: 1fr; }
+  /* Contacts */
+  .contacts-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 
-  .contact-info :is(.contact-link) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .contact-item {
+    gap: 15px;
+    min-width: 100%;
+  }
+
+  .contact-title {
+    font-size: 10px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 0;
   }
 
   .contact-info :is(.contact-link, time, address) {
-    --fs-7: 14px;
+    font-size: 10px !important;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: var(--fw-300);
   }
 
+  .contact-info {
+    max-width: calc(100% - 32px);
+    width: calc(100% - 32px);
+  }
+
+  /* Icons inside contacts */
+  .icon-box {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+  }
+
+  /* Separators */
+  .separator {
+    margin: 8px 0 !important;
+    height: 1px;
+  }
+
   .separator:last-of-type {
-    margin: 15px 0;
+    margin: 8px 0 !important;
     opacity: 0;
   }
 
-  .social-list { justify-content: center; }
+  /* Social icons – smaller & centered */
+  .social-list {
+    gap: 10px;
+    padding-left: 0;
+    padding-bottom: 2px;
+    justify-content: center;
+  }
 
-  /* Navbar - position inside main-content */
+  .social-item .social-link {
+    font-size: 14px !important;
+  }
+
+  /* Navbar - position inside main-content (unchanged) */
   .navbar {
     position: absolute;
     bottom: auto;
@@ -406,12 +493,22 @@
     gap: 20px 25px;
   }
 
-  .testimonials-item { min-width: calc(50% - 15px); }
-  .clients-item { min-width: calc(25% - 38px); }
-  .project-list { grid-template-columns: repeat(3, 1fr); }
-  .blog-banner-box { height: 230px; }
-}
+  .testimonials-item {
+    min-width: calc(50% - 15px);
+  }
 
+  .clients-item {
+    min-width: calc(25% - 38px);
+  }
+
+  .project-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .blog-banner-box {
+    height: 230px;
+  }
+}
 /**
  * responsive larger than 1250px screen
  * Only override what's different from 1024px
