@@ -183,7 +183,7 @@
   }
 
   .clients-item { min-width: calc(33.33% - 35px); }
-  .timeline-list { margin-left: 65px; }
+  .timeline-list { margin-left: 55px; }
   .timeline-item:not(:last-child)::before { left: -40px; }
 
   .timeline-item::after {
